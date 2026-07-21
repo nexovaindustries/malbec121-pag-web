@@ -1,5 +1,20 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
+const preloader = document.getElementById("preloader");
+if (preloader) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.style.overflow = "hidden";
+
+  const hidePreloader = () => {
+    preloader.classList.add("preloader-hide");
+    document.documentElement.style.overflow = "";
+    preloader.addEventListener("transitionend", () => preloader.remove(), { once: true });
+    setTimeout(() => preloader.remove(), 900);
+  };
+
+  setTimeout(hidePreloader, reduceMotion ? 350 : 2150);
+}
+
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 
