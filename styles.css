@@ -605,11 +605,24 @@ section {
 }
 
 /* ---------- Location ---------- */
-.location-grid {
+.locations-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.location-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.location-card h3 {
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
 }
 
 .info-block {
@@ -634,7 +647,7 @@ section {
 
 .location-map iframe {
   width: 100%;
-  height: 420px;
+  height: 260px;
   border: 0;
   border-radius: 4px;
   filter: grayscale(0.3) contrast(1.1);
@@ -649,7 +662,20 @@ section {
 }
 
 .reservas-inner {
-  max-width: 680px;
+  max-width: 780px;
+}
+
+.reservas-locations {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.reservas-location h3 {
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .reservas-actions {
@@ -666,6 +692,18 @@ section {
   padding: 3rem 0;
   text-align: center;
   color: var(--text-muted);
+}
+
+.footer-locations {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.footer-locations strong {
+  color: var(--text);
 }
 
 .footer-social {
@@ -685,7 +723,7 @@ section {
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .about-grid,
-  .location-grid,
+  .locations-grid,
   .hero-grid {
     grid-template-columns: 1fr;
   }
