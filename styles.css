@@ -608,7 +608,7 @@ section {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 960px) {
   .nav {
     display: flex;
     justify-content: space-between;
