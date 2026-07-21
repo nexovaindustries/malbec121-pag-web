@@ -12,7 +12,7 @@ if (preloader) {
     setTimeout(() => preloader.remove(), 900);
   };
 
-  setTimeout(hidePreloader, reduceMotion ? 350 : 2150);
+  setTimeout(hidePreloader, reduceMotion ? 350 : 4700);
 }
 
 const navToggle = document.getElementById("navToggle");

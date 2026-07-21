@@ -68,8 +68,8 @@
   background-position: 0% 100%;
   clip-path: inset(100% 0 0 0);
   filter: drop-shadow(0 0 26px rgba(255, 153, 60, 0.5));
-  animation: igniteRise 1.6s cubic-bezier(0.22, 0.7, 0.3, 1) 0.2s forwards,
-             flameFlicker 2.2s ease-in-out 1.8s infinite;
+  animation: igniteRise 3s cubic-bezier(0.16, 0.6, 0.3, 1) 0.3s forwards,
+             flameFlicker 2.2s ease-in-out 3.3s infinite;
 }
 
 .preloader-embers {
