@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: clamp(16px, 0.45vw + 14px, 19px);
 }
 
 body {
@@ -46,9 +47,9 @@ ul {
 }
 
 .container {
-  max-width: 1140px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
 }
 
 .eyebrow {
@@ -298,10 +299,16 @@ section {
 .embers span:nth-child(7) { left: 85%; animation-duration: 5.8s; animation-delay: 2.2s; }
 .embers span:nth-child(8) { left: 92%; animation-duration: 7s; animation-delay: 0.3s; width: 7px; height: 7px; }
 
-.hero-content {
+.hero-grid {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-content {
   opacity: 0;
   transform: translateY(24px);
   animation: heroIn 1s ease-out 0.2s forwards;
@@ -309,20 +316,25 @@ section {
 
 .hero h1 {
   line-height: 1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-logo {
-  width: clamp(280px, 34vw, 480px);
+  width: clamp(300px, 26vw, 460px);
   height: auto;
   filter: drop-shadow(0 0 24px rgba(201, 164, 92, 0.25));
 }
 
 .hero-sub {
   color: var(--text-muted);
-  font-size: 1.1rem;
-  max-width: 520px;
-  margin-bottom: 2.25rem;
+  font-size: 1.25rem;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-visual {
+  min-height: 460px;
+  height: 100%;
 }
 
 .hero-actions {
@@ -560,8 +572,14 @@ section {
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .about-grid,
-  .location-grid {
+  .location-grid,
+  .hero-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 280px;
+    order: -1;
   }
 
   .menu-grid {
