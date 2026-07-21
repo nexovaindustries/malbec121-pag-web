@@ -157,7 +157,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.5rem 0.85rem 0;
 }
 
 .logo {
@@ -194,7 +194,8 @@ section {
 
 .nav-links a {
   position: relative;
-  font-size: 0.92rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--text);
@@ -230,9 +231,11 @@ section {
   background: var(--wine);
   border: 1px solid var(--wine);
   border-radius: 3px;
-  padding: 0.55rem 1.4rem;
+  padding: 0.55rem 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   color: var(--text) !important;
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
