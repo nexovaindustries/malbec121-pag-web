@@ -154,10 +154,11 @@ section {
 }
 
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 1.5rem;
+  gap: 1.5rem;
+  padding: 0.85rem 1.5rem;
 }
 
 .logo {
@@ -166,7 +167,7 @@ section {
 }
 
 .logo-wordmark {
-  height: 40px;
+  height: 34px;
   width: auto;
   filter: drop-shadow(0 0 10px rgba(201, 164, 92, 0.18));
 }
@@ -179,7 +180,16 @@ section {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 2.25rem;
+}
+
+.nav-cta-item {
+  display: none;
+}
+
+.nav-cta-desktop {
+  justify-self: end;
 }
 
 .nav-links a {
@@ -592,8 +602,21 @@ section {
 }
 
 @media (max-width: 720px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-cta-desktop {
+    display: none;
+  }
+
+  .nav-cta-item {
+    display: block;
   }
 
   .nav-links {
