@@ -162,33 +162,18 @@ section {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
 }
 
-.logo-badge {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
+.logo-wordmark {
+  height: 40px;
+  width: auto;
   mix-blend-mode: screen;
-  box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.5), 0 0 14px rgba(122, 31, 43, 0.55);
-  animation: badgeGlow 3.5s ease-in-out infinite;
-}
-
-.logo-text {
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  letter-spacing: 0.02em;
-}
-
-.logo-text em {
-  font-style: normal;
-  color: var(--gold);
+  filter: drop-shadow(0 0 10px rgba(201, 164, 92, 0.18));
 }
 
 .footer-logo {
-  justify-content: center;
-  margin-bottom: 0.75rem;
+  height: 52px;
+  margin: 0 auto 0.75rem;
 }
 
 .nav-links {
@@ -324,9 +309,15 @@ section {
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 7vw, 5.5rem);
   line-height: 1;
   margin-bottom: 1.25rem;
+}
+
+.hero-logo {
+  width: clamp(280px, 34vw, 480px);
+  height: auto;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 24px rgba(201, 164, 92, 0.25));
 }
 
 .hero-sub {
@@ -665,11 +656,6 @@ section {
   10% { opacity: 1; }
   90% { opacity: 0.7; }
   100% { transform: translateY(-92vh) translateX(18px); opacity: 0; }
-}
-
-@keyframes badgeGlow {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.5), 0 0 8px rgba(122, 31, 43, 0.4); }
-  50% { box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.9), 0 0 18px 4px rgba(201, 164, 92, 0.65); }
 }
 
 @media (prefers-reduced-motion: reduce) {
