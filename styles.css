@@ -167,7 +167,6 @@ section {
 .logo-wordmark {
   height: 40px;
   width: auto;
-  mix-blend-mode: screen;
   filter: drop-shadow(0 0 10px rgba(201, 164, 92, 0.18));
 }
 
@@ -316,7 +315,6 @@ section {
 .hero-logo {
   width: clamp(280px, 34vw, 480px);
   height: auto;
-  mix-blend-mode: screen;
   filter: drop-shadow(0 0 24px rgba(201, 164, 92, 0.25));
 }
 
