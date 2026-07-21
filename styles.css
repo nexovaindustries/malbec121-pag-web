@@ -652,6 +652,14 @@ section {
   margin: 0 auto 1.25rem;
 }
 
+.cuts-diagram {
+  display: block;
+  width: min(100%, 720px);
+  height: auto;
+  margin: 3rem auto 0;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.45));
+}
+
 .cuts-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
