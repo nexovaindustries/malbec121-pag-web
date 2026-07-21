@@ -3,21 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malbec121</title>
+  <title>Malbec 121 | Parrilla &amp; Vinos — Arequipa</title>
+  <meta name="description" content="Malbec 121, parrilla y vinos en Yanahuara, Arequipa. Cortes nacionales e importados a la brasa, carta de vinos y cócteles de autor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Malbec121</h1>
-    <p>Próximamente</p>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#inicio" class="logo">Malbec <span>121</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#reservas" class="btn-nav">Reservar</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <p>Estamos preparando algo nuevo.</p>
+
+    <section id="inicio" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="eyebrow">Parrilla &amp; Vinos · Yanahuara, Arequipa</p>
+        <h1>Malbec 121</h1>
+        <p class="hero-sub">Cortes a la parrilla de carbón, carta de vinos seleccionada y coctelería de autor, en el corazón de Yanahuara.</p>
+        <div class="hero-actions">
+          <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
+          <a href="#menu" class="btn btn-outline">Ver menú</a>
+        </div>
+        <div class="hero-rating">
+          <span>★★★★★</span>
+          <p>4.7/5 en reseñas de clientes · Top restaurantes de Arequipa</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros" class="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="eyebrow">Nuestra esencia</p>
+          <h2>Carne, fuego y vino</h2>
+          <p>Malbec 121 nace de la tradición de la parrilla argentina y el respeto por el buen vino. Cada corte se cocina a la brasa de carbón, tal como manda la técnica, y se acompaña de una carta pensada para realzar cada bocado — con el Malbec, la uva insignia argentina, como protagonista.</p>
+          <p>En un ambiente elegante y acogedor, ideal para grupos y celebraciones, nuestro equipo te guía entre cortes nacionales e importados, sabores peruanos y una selección de vinos y cócteles de autor.</p>
+          <ul class="about-highlights">
+            <li>Parrilla de carbón tradicional</li>
+            <li>Carta de vinos curada</li>
+            <li>Cócteles de autor</li>
+            <li>Espacio para grupos y eventos</li>
+          </ul>
+        </div>
+        <div class="about-image placeholder-img" data-label="Foto del local"></div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu">
+      <div class="container">
+        <p class="eyebrow center">Nuestra propuesta</p>
+        <h2 class="center">Menú</h2>
+        <p class="section-sub center">Una selección de nuestros platos y bebidas más pedidos. Carta completa disponible en el local.</p>
+
+        <div class="menu-grid">
+          <div class="menu-category">
+            <h3>Parrillas</h3>
+            <ul class="menu-items">
+              <li><span>Tomahawk a la parrilla de carbón</span><span class="price">S/ —</span></li>
+              <li><span>Ribeye</span><span class="price">S/ —</span></li>
+              <li><span>Picanha</span><span class="price">S/ —</span></li>
+              <li><span>Entraña</span><span class="price">S/ —</span></li>
+              <li><span>Chorizo mix</span><span class="price">S/ —</span></li>
+              <li><span>Falda tierna</span><span class="price">S/ —</span></li>
+              <li class="featured"><span>Parrilla doble Malbec <em>(para 4-5 personas)</em></span><span class="price">S/ —</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-category">
+            <h3>Sabor peruano &amp; más</h3>
+            <ul class="menu-items">
+              <li><span>Lomo saltado</span><span class="price">S/ —</span></li>
+              <li><span>Hamburguesas Angus</span><span class="price">S/ —</span></li>
+              <li><span>Pastas de la casa</span><span class="price">S/ —</span></li>
+              <li><span>Papa nativa a la parrilla</span><span class="price">S/ —</span></li>
+              <li><span>Batata a la parrilla</span><span class="price">S/ —</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-category">
+            <h3>Cócteles de autor</h3>
+            <ul class="menu-items">
+              <li><span>Pasión Malbec</span><span class="price">S/ —</span></li>
+              <li><span>Fantasía en las Nubes</span><span class="price">S/ —</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-category">
+            <h3>Vinos</h3>
+            <ul class="menu-items">
+              <li><span>Malbec argentino, selección de la casa</span><span class="price">S/ —</span></li>
+              <li><span>Carta de vinos tintos, blancos y espumantes</span><span class="price">Consultar</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="menu-note">* Precios referenciales, sujetos a disponibilidad. Solicita la carta completa en el local.</p>
+      </div>
+    </section>
+
+    <section id="galeria" class="gallery">
+      <div class="container">
+        <p class="eyebrow center">Un vistazo</p>
+        <h2 class="center">Galería</h2>
+        <div class="gallery-grid">
+          <div class="placeholder-img" data-label="Parrilla"></div>
+          <div class="placeholder-img" data-label="Ambiente"></div>
+          <div class="placeholder-img" data-label="Corte de carne"></div>
+          <div class="placeholder-img" data-label="Cóctel"></div>
+          <div class="placeholder-img" data-label="Copa de vino"></div>
+          <div class="placeholder-img" data-label="Mesa servida"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ubicacion" class="location">
+      <div class="container location-grid">
+        <div class="location-info">
+          <p class="eyebrow">Visítanos</p>
+          <h2>Ubicación &amp; horario</h2>
+          <div class="info-block">
+            <h4>Dirección</h4>
+            <p>Av. Emmel 121, Yanahuara, Arequipa, Perú</p>
+          </div>
+          <div class="info-block">
+            <h4>Horario</h4>
+            <p>Domingo a viernes: 12:00 m. – 11:00 p.m.</p>
+            <p>Sábados: 12:00 m. – 10:00 p.m.</p>
+          </div>
+          <div class="info-block">
+            <h4>Contacto</h4>
+            <p><a href="tel:+51959009485">+51 959 009 485</a></p>
+          </div>
+          <div class="info-block">
+            <h4>Síguenos</h4>
+            <p>
+              <a href="https://www.instagram.com/malbec121/" target="_blank" rel="noopener">Instagram</a> ·
+              <a href="https://www.facebook.com/malbec121/" target="_blank" rel="noopener">Facebook</a>
+            </p>
+          </div>
+        </div>
+        <div class="location-map">
+          <iframe
+            title="Mapa Malbec 121"
+            src="https://www.google.com/maps?q=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="reservas" class="reservas">
+      <div class="container reservas-inner">
+        <p class="eyebrow center">Reserva tu mesa</p>
+        <h2 class="center">Te esperamos en Malbec 121</h2>
+        <p class="section-sub center">Escríbenos por WhatsApp o llámanos directamente para reservar tu mesa, especialmente en fines de semana y grupos grandes.</p>
+        <div class="reservas-actions">
+          <a class="btn btn-primary" target="_blank" rel="noopener"
+             href="https://wa.me/51959009485?text=Hola%2C%20quisiera%20reservar%20una%20mesa%20en%20Malbec%20121">
+            Reservar por WhatsApp
+          </a>
+          <a class="btn btn-outline" href="tel:+51959009485">Llamar al +51 959 009 485</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>&copy; <span id="year"></span> Malbec121</p>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="logo">Malbec <span>121</span></p>
+      <p>Av. Emmel 121, Yanahuara, Arequipa, Perú</p>
+      <p class="footer-social">
+        <a href="https://www.instagram.com/malbec121/" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="https://www.facebook.com/malbec121/" target="_blank" rel="noopener">Facebook</a>
+      </p>
+      <p class="footer-copy">&copy; <span id="year"></span> Malbec 121. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
