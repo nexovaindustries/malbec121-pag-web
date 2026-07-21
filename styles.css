@@ -162,16 +162,33 @@ section {
 .logo {
   display: inline-flex;
   align-items: center;
+  gap: 0.65rem;
 }
 
-.logo-img {
-  height: 52px;
-  width: auto;
-  max-width: 230px;
+.logo-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   object-fit: cover;
-  object-position: center 47%;
   mix-blend-mode: screen;
-  filter: drop-shadow(0 0 10px rgba(201, 164, 92, 0.15));
+  box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.5), 0 0 14px rgba(122, 31, 43, 0.55);
+  animation: badgeGlow 3.5s ease-in-out infinite;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.logo-text em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.footer-logo {
+  justify-content: center;
+  margin-bottom: 0.75rem;
 }
 
 .nav-links {
@@ -279,23 +296,23 @@ section {
 .embers span {
   position: absolute;
   bottom: -5%;
-  width: 5px;
-  height: 5px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: radial-gradient(circle, #ffd79a, var(--gold) 60%, transparent 100%);
-  box-shadow: 0 0 6px 1px rgba(201, 164, 92, 0.8);
+  background: radial-gradient(circle, #ffe8bf, var(--gold) 55%, transparent 100%);
+  box-shadow: 0 0 12px 3px rgba(201, 164, 92, 0.9);
   opacity: 0;
   animation: emberRise linear infinite;
 }
 
-.embers span:nth-child(1) { left: 12%; animation-duration: 7s; animation-delay: 0s; }
-.embers span:nth-child(2) { left: 24%; animation-duration: 9s; animation-delay: 1.2s; width: 3px; height: 3px; }
-.embers span:nth-child(3) { left: 38%; animation-duration: 6.5s; animation-delay: 2.4s; }
-.embers span:nth-child(4) { left: 50%; animation-duration: 8s; animation-delay: 0.6s; width: 4px; height: 4px; }
-.embers span:nth-child(5) { left: 63%; animation-duration: 7.5s; animation-delay: 3s; }
-.embers span:nth-child(6) { left: 74%; animation-duration: 9.5s; animation-delay: 1.8s; width: 3px; height: 3px; }
-.embers span:nth-child(7) { left: 85%; animation-duration: 6.8s; animation-delay: 2.6s; }
-.embers span:nth-child(8) { left: 92%; animation-duration: 8.5s; animation-delay: 0.3s; width: 4px; height: 4px; }
+.embers span:nth-child(1) { left: 12%; animation-duration: 6s; animation-delay: 0s; }
+.embers span:nth-child(2) { left: 24%; animation-duration: 7.5s; animation-delay: 1s; width: 6px; height: 6px; }
+.embers span:nth-child(3) { left: 38%; animation-duration: 5.5s; animation-delay: 2s; }
+.embers span:nth-child(4) { left: 50%; animation-duration: 6.8s; animation-delay: 0.5s; width: 7px; height: 7px; }
+.embers span:nth-child(5) { left: 63%; animation-duration: 6.2s; animation-delay: 2.6s; }
+.embers span:nth-child(6) { left: 74%; animation-duration: 8s; animation-delay: 1.5s; width: 6px; height: 6px; }
+.embers span:nth-child(7) { left: 85%; animation-duration: 5.8s; animation-delay: 2.2s; }
+.embers span:nth-child(8) { left: 92%; animation-duration: 7s; animation-delay: 0.3s; width: 7px; height: 7px; }
 
 .hero-content {
   position: relative;
@@ -537,11 +554,6 @@ section {
   color: var(--text-muted);
 }
 
-.footer-logo-img {
-  height: 64px;
-  margin: 0 auto 0.75rem;
-}
-
 .footer-social {
   margin: 0.75rem 0;
 }
@@ -644,8 +656,8 @@ section {
 }
 
 @keyframes coalPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.08); }
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 @keyframes emberRise {
@@ -653,6 +665,11 @@ section {
   10% { opacity: 1; }
   90% { opacity: 0.7; }
   100% { transform: translateY(-92vh) translateX(18px); opacity: 0; }
+}
+
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.5), 0 0 8px rgba(122, 31, 43, 0.4); }
+  50% { box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.9), 0 0 18px 4px rgba(201, 164, 92, 0.65); }
 }
 
 @media (prefers-reduced-motion: reduce) {
