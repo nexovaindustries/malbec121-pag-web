@@ -33,6 +33,10 @@
 
     <section id="inicio" class="hero">
       <div class="hero-overlay"></div>
+      <div class="embers" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
       <div class="hero-content container">
         <p class="eyebrow">Parrilla &amp; Vinos · Yanahuara, Arequipa</p>
         <h1>Malbec 121</h1>
@@ -50,7 +54,7 @@
 
     <section id="nosotros" class="about">
       <div class="container about-grid">
-        <div class="about-text">
+        <div class="about-text" data-animate="fade-right">
           <p class="eyebrow">Nuestra esencia</p>
           <h2>Carne, fuego y vino</h2>
           <p>Malbec 121 nace de la tradición de la parrilla argentina y el respeto por el buen vino. Cada corte se cocina a la brasa de carbón, tal como manda la técnica, y se acompaña de una carta pensada para realzar cada bocado — con el Malbec, la uva insignia argentina, como protagonista.</p>
@@ -62,7 +66,7 @@
             <li>Espacio para grupos y eventos</li>
           </ul>
         </div>
-        <div class="about-image placeholder-img" data-label="Foto del local"></div>
+        <div class="about-image placeholder-img" data-label="Foto del local" data-animate="fade-left"></div>
       </div>
     </section>
 
@@ -73,7 +77,7 @@
         <p class="section-sub center">Una selección de nuestros platos y bebidas más pedidos. Carta completa disponible en el local.</p>
 
         <div class="menu-grid">
-          <div class="menu-category">
+          <div class="menu-category" data-animate="fade-up">
             <h3>Parrillas</h3>
             <ul class="menu-items">
               <li><span>Tomahawk a la parrilla de carbón</span><span class="price">S/ —</span></li>
@@ -86,7 +90,7 @@
             </ul>
           </div>
 
-          <div class="menu-category">
+          <div class="menu-category" data-animate="fade-up" data-delay="1">
             <h3>Sabor peruano &amp; más</h3>
             <ul class="menu-items">
               <li><span>Lomo saltado</span><span class="price">S/ —</span></li>
@@ -97,7 +101,7 @@
             </ul>
           </div>
 
-          <div class="menu-category">
+          <div class="menu-category" data-animate="fade-up" data-delay="2">
             <h3>Cócteles de autor</h3>
             <ul class="menu-items">
               <li><span>Pasión Malbec</span><span class="price">S/ —</span></li>
@@ -105,7 +109,7 @@
             </ul>
           </div>
 
-          <div class="menu-category">
+          <div class="menu-category" data-animate="fade-up" data-delay="3">
             <h3>Vinos</h3>
             <ul class="menu-items">
               <li><span>Malbec argentino, selección de la casa</span><span class="price">S/ —</span></li>
@@ -123,19 +127,19 @@
         <p class="eyebrow center">Un vistazo</p>
         <h2 class="center">Galería</h2>
         <div class="gallery-grid">
-          <div class="placeholder-img" data-label="Parrilla"></div>
-          <div class="placeholder-img" data-label="Ambiente"></div>
-          <div class="placeholder-img" data-label="Corte de carne"></div>
-          <div class="placeholder-img" data-label="Cóctel"></div>
-          <div class="placeholder-img" data-label="Copa de vino"></div>
-          <div class="placeholder-img" data-label="Mesa servida"></div>
+          <div class="placeholder-img" data-label="Parrilla" data-animate="fade-up" data-delay="0"></div>
+          <div class="placeholder-img" data-label="Ambiente" data-animate="fade-up" data-delay="1"></div>
+          <div class="placeholder-img" data-label="Corte de carne" data-animate="fade-up" data-delay="2"></div>
+          <div class="placeholder-img" data-label="Cóctel" data-animate="fade-up" data-delay="0"></div>
+          <div class="placeholder-img" data-label="Copa de vino" data-animate="fade-up" data-delay="1"></div>
+          <div class="placeholder-img" data-label="Mesa servida" data-animate="fade-up" data-delay="2"></div>
         </div>
       </div>
     </section>
 
     <section id="ubicacion" class="location">
       <div class="container location-grid">
-        <div class="location-info">
+        <div class="location-info" data-animate="fade-right">
           <p class="eyebrow">Visítanos</p>
           <h2>Ubicación &amp; horario</h2>
           <div class="info-block">
@@ -159,7 +163,7 @@
             </p>
           </div>
         </div>
-        <div class="location-map">
+        <div class="location-map" data-animate="fade-left">
           <iframe
             title="Mapa Malbec 121"
             src="https://www.google.com/maps?q=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru&output=embed"
@@ -171,7 +175,7 @@
     </section>
 
     <section id="reservas" class="reservas">
-      <div class="container reservas-inner">
+      <div class="container reservas-inner" data-animate="fade-up">
         <p class="eyebrow center">Reserva tu mesa</p>
         <h2 class="center">Te esperamos en Malbec 121</h2>
         <p class="section-sub center">Escríbenos por WhatsApp o llámanos directamente para reservar tu mesa, especialmente en fines de semana y grupos grandes.</p>

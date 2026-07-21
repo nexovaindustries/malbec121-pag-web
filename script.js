@@ -14,3 +14,29 @@ navLinks.querySelectorAll("a").forEach((link) => {
     navToggle.setAttribute("aria-expanded", "false");
   });
 });
+
+const animatedEls = document.querySelectorAll("[data-animate]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+animatedEls.forEach((el) => {
+  const delay = el.getAttribute("data-delay");
+  if (delay) el.style.setProperty("--reveal-delay", delay);
+});
+
+if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+  animatedEls.forEach((el) => el.classList.add("in-view"));
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+  );
+
+  animatedEls.forEach((el) => revealObserver.observe(el));
+}
