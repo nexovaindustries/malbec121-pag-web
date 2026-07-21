@@ -11,7 +11,7 @@
   --border: rgba(201, 164, 92, 0.25);
 
   --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Jost", system-ui, sans-serif;
+  --font-body: "Poppins", system-ui, sans-serif;
 }
 
 * {
@@ -156,9 +156,9 @@ section {
 }
 
 .nav-links a {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
   transition: color 0.2s ease;
 }
