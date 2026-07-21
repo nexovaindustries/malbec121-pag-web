@@ -537,6 +537,16 @@ section {
 }
 
 /* ---------- Menu ---------- */
+.menu-teaser {
+  background: var(--bg-alt);
+  text-align: center;
+}
+
+.menu-teaser .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .menu {
   background: var(--bg-alt);
 }
@@ -595,6 +605,101 @@ section {
   font-size: 0.85rem;
   color: var(--text-muted);
   text-align: center;
+}
+
+.price-pair {
+  display: flex;
+  gap: 1.25rem;
+  white-space: nowrap;
+  color: var(--gold);
+  font-family: var(--font-heading);
+}
+
+.price-pair span {
+  min-width: 52px;
+  text-align: right;
+}
+
+.price-columns-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.price-columns-header span {
+  min-width: 52px;
+  text-align: right;
+}
+
+/* ---------- Carta page ---------- */
+.carta-hero {
+  padding: 8rem 0 3rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(122,31,43,0.35), transparent 55%),
+    var(--bg);
+}
+
+.carta-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  max-width: 780px;
+  margin: 0 auto 1.25rem;
+}
+
+.cuts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.cut-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem 1.25rem;
+}
+
+.cut-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.cut-card h4 {
+  font-family: var(--font-heading);
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.cut-stats li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0;
+}
+
+.cut-stats .stars {
+  color: var(--gold);
+  letter-spacing: 0.05em;
 }
 
 /* ---------- Gallery ---------- */
@@ -790,6 +895,10 @@ a:hover .icon-instagram {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .cuts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 960px) {
@@ -852,6 +961,20 @@ a:hover .icon-instagram {
 @media (max-width: 520px) {
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cuts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-pair,
+  .price-columns-header {
+    gap: 0.75rem;
+  }
+
+  .price-pair span,
+  .price-columns-header span {
+    min-width: 44px;
   }
 }
 
