@@ -817,12 +817,43 @@ a:hover .icon-instagram {
   color: var(--gold);
 }
 
+.location-map {
+  position: relative;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 .location-map iframe {
   width: 100%;
   height: 260px;
   border: 0;
-  border-radius: 4px;
+  display: block;
+  pointer-events: none;
   filter: grayscale(0.3) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.location-map:hover iframe {
+  filter: grayscale(0) contrast(1.1);
+}
+
+.location-map::after {
+  content: "Abrir en Google Maps";
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  background: linear-gradient(0deg, rgba(23,16,14,0.9), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.location-map:hover::after {
+  opacity: 1;
 }
 
 /* ---------- Reservas ---------- */
