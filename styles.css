@@ -801,16 +801,36 @@ a:hover .icon-instagram {
 }
 
 .location-card {
-  background: var(--panel);
+  position: relative;
+  background: linear-gradient(160deg, var(--panel), var(--bg-alt));
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 2rem;
+  padding: 2.25rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--wine-light));
+}
+
+.location-card:hover {
+  border-color: rgba(201, 164, 92, 0.4);
+  box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.6);
 }
 
 .location-card h3 {
-  color: var(--gold);
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
+  color: var(--text);
+  font-size: 1.35rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .info-block {
@@ -818,11 +838,14 @@ a:hover .icon-instagram {
 }
 
 .info-block h4 {
+  font-family: var(--font-body);
   color: var(--gold);
-  font-size: 1rem;
-  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.16em;
+  opacity: 0.85;
 }
 
 .info-block p {
@@ -838,6 +861,7 @@ a:hover .icon-instagram {
   display: block;
   border-radius: 4px;
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .location-map iframe {
@@ -846,24 +870,24 @@ a:hover .icon-instagram {
   border: 0;
   display: block;
   pointer-events: none;
-  filter: grayscale(0.3) contrast(1.1);
+  filter: invert(94%) hue-rotate(178deg) brightness(0.87) contrast(0.92) saturate(0.6);
   transition: filter 0.3s ease;
 }
 
 .location-map:hover iframe {
-  filter: grayscale(0) contrast(1.1);
+  filter: invert(94%) hue-rotate(178deg) brightness(0.95) contrast(0.95) saturate(0.75);
 }
 
 .location-map::after {
   content: "Abrir en Google Maps";
   position: absolute;
   inset: auto 0 0 0;
-  padding: 0.5rem;
+  padding: 0.6rem;
   text-align: center;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  color: var(--text);
-  background: linear-gradient(0deg, rgba(23,16,14,0.9), transparent);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  background: linear-gradient(0deg, rgba(23,16,14,0.95), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
