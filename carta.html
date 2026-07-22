@@ -9,9 +9,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="logo-badge.jpg">
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body>
+
+  <svg style="display:none" aria-hidden="true">
+    <defs>
+      <symbol id="flag-pe" viewBox="0 0 3 2">
+        <rect width="3" height="2" fill="#fff"/>
+        <rect width="1" height="2" fill="#D91023"/>
+        <rect x="2" width="1" height="2" fill="#D91023"/>
+      </symbol>
+      <symbol id="flag-es" viewBox="0 0 3 2">
+        <rect width="3" height="2" fill="#AA151B"/>
+        <rect y="0.5" width="3" height="1" fill="#F1BF00"/>
+      </symbol>
+      <symbol id="flag-ar" viewBox="0 0 3 2">
+        <rect width="3" height="2" fill="#fff"/>
+        <rect width="3" height="0.667" fill="#74ACDF"/>
+        <rect y="1.333" width="3" height="0.667" fill="#74ACDF"/>
+        <circle cx="1.5" cy="1" r="0.22" fill="#F6B40E" stroke="#85340A" stroke-width="0.03"/>
+      </symbol>
+      <symbol id="flag-cl" viewBox="0 0 3 2">
+        <rect width="3" height="2" fill="#fff"/>
+        <rect y="1" width="3" height="1" fill="#D52B1E"/>
+        <rect width="1.2" height="1" fill="#0039A6"/>
+        <polygon points="0.6,0.35 0.68,0.58 0.92,0.58 0.72,0.72 0.8,0.95 0.6,0.8 0.4,0.95 0.48,0.72 0.28,0.58 0.52,0.58" fill="#fff"/>
+      </symbol>
+    </defs>
+  </svg>
 
   <header class="site-header">
     <nav class="nav container">
@@ -38,13 +64,10 @@
   <main class="carta-page">
 
     <section class="carta-hero">
-      <div class="container carta-hero-grid">
-        <div class="carta-hero-text" data-animate="fade-right">
-          <p class="eyebrow">Nuestra carta</p>
-          <h1>Carnes que cuentan historias<br>y vinos que elevan la pasión</h1>
-          <p class="section-sub">Cortes a la parrilla de carbón, platos de autor y una cava curada de Perú, Argentina, Chile y España.</p>
-        </div>
-        <img src="8.png" alt="Términos de la carne: blue, medio, 3/4, cocido - Malbec 121" class="carta-hero-img" data-animate="fade-left">
+      <div class="container">
+        <p class="eyebrow center">Nuestra carta</p>
+        <h1 class="center">Carnes que cuentan historias<br>y vinos que elevan la pasión</h1>
+        <p class="section-sub center">Cortes a la parrilla de carbón, platos de autor y una cava curada de Perú, Argentina, Chile y España.</p>
       </div>
     </section>
 
@@ -211,7 +234,7 @@
           </div>
 
           <div class="menu-category" data-animate="fade-up" data-delay="1">
-            <h3>Cortes importados · Argentina Angus 🇦🇷</h3>
+            <h3>Cortes importados · Argentina Angus <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <div class="price-columns-header"><span>300gr</span><span>200gr</span></div>
             <ul class="menu-items">
               <li><span>Entraña fina</span><span class="price-pair"><span>62.00</span><span>54.00</span></span></li>
@@ -241,11 +264,11 @@
             </ul>
           </div>
           <div class="menu-category" data-animate="fade-up" data-delay="1">
-            <h3>Parrillas Malbec &amp; Angus 🇦🇷</h3>
+            <h3>Parrillas Malbec &amp; Angus <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Parrilla Malbec simple <em>(1 asado de tira, 1 cuadril, 1 pechuga, 1 bife, 1 salchicha, 1 chorizo)</em></span><span class="price">110.00</span></li>
               <li><span>Parrilla Malbec doble <em>(2 asado de tira, 2 cuadril, 2 pechuga, 2 morcilla, 1 chorizo)</em></span><span class="price">190.00</span></li>
-              <li class="featured"><span>Parrilla Argentina Angus 🇦🇷 <em>(entraña fina, bife ancho, picaña, lomo fino, salchicha, chorizo, morcilla)</em></span><span class="price">200.00</span></li>
+              <li class="featured"><span>Parrilla Argentina Angus <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg> <em>(entraña fina, bife ancho, picaña, lomo fino, salchicha, chorizo, morcilla)</em></span><span class="price">200.00</span></li>
             </ul>
           </div>
         </div>
@@ -374,7 +397,7 @@
 
         <div class="menu-grid">
           <div class="menu-category" data-animate="fade-up">
-            <h3>Intipalka 🇵🇪</h3>
+            <h3>Intipalka <svg class="flag" aria-hidden="true"><use href="#flag-pe"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Malbec</span><span class="price">53.00</span></li>
               <li><span>Syrah</span><span class="price">53.00</span></li>
@@ -384,7 +407,7 @@
               <li><span>Reserva Malbec, Merlot</span><span class="price">55.00</span></li>
             </ul>
 
-            <h3 style="margin-top:2rem;">Sangre de Toro 🇪🇸</h3>
+            <h3 style="margin-top:2rem;">Sangre de Toro <svg class="flag" aria-hidden="true"><use href="#flag-es"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Original <em>(garnacha, cariñena)</em></span><span class="price">83.00</span></li>
               <li><span>Tempranillo</span><span class="price">83.00</span></li>
@@ -392,7 +415,7 @@
           </div>
 
           <div class="menu-category" data-animate="fade-up" data-delay="1">
-            <h3>Doña Paula 🇦🇷</h3>
+            <h3>Doña Paula <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Los Cardos Malbec</span><span class="price">63.00</span></li>
               <li><span>Los Cardos Cabernet Sauvignon</span><span class="price">63.00</span></li>
@@ -401,7 +424,7 @@
               <li><span>Estate Cabernet Sauvignon</span><span class="price">97.00</span></li>
             </ul>
 
-            <h3 style="margin-top:2rem;">Nieto Senetiner 🇦🇷</h3>
+            <h3 style="margin-top:2rem;">Nieto Senetiner <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Benjamín Malbec</span><span class="price">63.00</span></li>
               <li><span>Benjamín Tempranillo</span><span class="price">63.00</span></li>
@@ -413,7 +436,7 @@
           </div>
 
           <div class="menu-category" data-animate="fade-up" data-delay="2">
-            <h3>Navarro Correas 🇦🇷</h3>
+            <h3>Navarro Correas <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Colección Privada Malbec</span><span class="price">93.00</span></li>
               <li><span>Colección Privada Cabernet Sauvignon</span><span class="price">87.00</span></li>
@@ -422,7 +445,7 @@
               <li><span>Colección Privada Malbec, Cabernet, Merlot</span><span class="price">87.00</span></li>
             </ul>
 
-            <h3 style="margin-top:2rem;">Finca Las Moras 🇦🇷</h3>
+            <h3 style="margin-top:2rem;">Finca Las Moras <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Las Moras Malbec</span><span class="price">57.00</span></li>
               <li><span>Las Moras Cabernet Sauvignon</span><span class="price">57.00</span></li>
@@ -432,20 +455,20 @@
           </div>
 
           <div class="menu-category" data-animate="fade-up" data-delay="3">
-            <h3>Catena Zapata 🇦🇷</h3>
+            <h3>Catena Zapata <svg class="flag" aria-hidden="true"><use href="#flag-ar"></use></svg></h3>
             <ul class="menu-items">
               <li><span>El Enemigo Malbec</span><span class="price">250.00</span></li>
               <li><span>El Gran Enemigo Blend</span><span class="price">650.00</span></li>
               <li><span>Catena Malbec</span><span class="price">200.00</span></li>
             </ul>
 
-            <h3 style="margin-top:2rem;">Casillero del Diablo 🇨🇱</h3>
+            <h3 style="margin-top:2rem;">Casillero del Diablo <svg class="flag" aria-hidden="true"><use href="#flag-cl"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Malbec / Merlot / Carmenère</span><span class="price">95.00</span></li>
               <li><span>Red Blend</span><span class="price">110.00</span></li>
             </ul>
 
-            <h3 style="margin-top:2rem;">Las Mulas 🇨🇱</h3>
+            <h3 style="margin-top:2rem;">Las Mulas <svg class="flag" aria-hidden="true"><use href="#flag-cl"></use></svg></h3>
             <ul class="menu-items">
               <li><span>Malbec</span><span class="price">110.00</span></li>
               <li><span>Carmenère</span><span class="price">110.00</span></li>
@@ -503,6 +526,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=22"></script>
+  <script src="script.js?v=23"></script>
 </body>
 </html>

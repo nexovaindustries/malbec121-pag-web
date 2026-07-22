@@ -639,31 +639,26 @@ section {
 /* ---------- Carta page ---------- */
 .carta-hero {
   padding: 8rem 0 3rem;
+  text-align: center;
   background:
     radial-gradient(circle at 50% 0%, rgba(122,31,43,0.35), transparent 55%),
     var(--bg);
 }
 
-.carta-hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
 .carta-hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.15;
-  margin-bottom: 1.25rem;
+  max-width: 780px;
+  margin: 0 auto 1.25rem;
 }
 
-.carta-hero-img {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 8px;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+.flag {
+  width: 1.35em;
+  height: 0.95em;
+  vertical-align: middle;
+  margin-left: 0.4em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .cuts-diagram {
@@ -901,17 +896,8 @@ a:hover .icon-instagram {
 @media (max-width: 860px) {
   .about-grid,
   .locations-grid,
-  .hero-grid,
-  .carta-hero-grid {
+  .hero-grid {
     grid-template-columns: 1fr;
-  }
-
-  .carta-hero-grid {
-    text-align: center;
-  }
-
-  .carta-hero-img {
-    order: -1;
   }
 
   .hero-visual {
