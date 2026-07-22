@@ -972,8 +972,9 @@ a:hover .icon-instagram {
   }
 
   .hero-visual {
-    min-height: 280px;
-    order: -1;
+    min-height: 200px;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   .menu-grid {
