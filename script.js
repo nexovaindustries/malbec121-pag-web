@@ -18,6 +18,12 @@ navLinks.querySelectorAll("a").forEach((link) => {
 const animatedEls = document.querySelectorAll("[data-animate]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const heroVideo = document.getElementById("heroVideo");
+if (heroVideo && prefersReducedMotion) {
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.pause();
+}
+
 animatedEls.forEach((el) => {
   const delay = el.getAttribute("data-delay");
   if (delay) el.style.setProperty("--reveal-delay", delay);
