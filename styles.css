@@ -295,34 +295,6 @@ section {
     radial-gradient(circle at 50% 30%, rgba(122,31,43,0.2), transparent 55%);
 }
 
-.embers {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.embers span {
-  position: absolute;
-  bottom: -5%;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffe8bf, var(--gold) 55%, transparent 100%);
-  box-shadow: 0 0 12px 3px rgba(201, 164, 92, 0.9);
-  opacity: 0;
-  animation: emberRise linear infinite;
-}
-
-.embers span:nth-child(1) { left: 12%; animation-duration: 6s; animation-delay: 0s; }
-.embers span:nth-child(2) { left: 24%; animation-duration: 7.5s; animation-delay: 1s; width: 6px; height: 6px; }
-.embers span:nth-child(3) { left: 38%; animation-duration: 5.5s; animation-delay: 2s; }
-.embers span:nth-child(4) { left: 50%; animation-duration: 6.8s; animation-delay: 0.5s; width: 7px; height: 7px; }
-.embers span:nth-child(5) { left: 63%; animation-duration: 6.2s; animation-delay: 2.6s; }
-.embers span:nth-child(6) { left: 74%; animation-duration: 8s; animation-delay: 1.5s; width: 6px; height: 6px; }
-.embers span:nth-child(7) { left: 85%; animation-duration: 5.8s; animation-delay: 2.2s; }
-.embers span:nth-child(8) { left: 92%; animation-duration: 7s; animation-delay: 0.3s; width: 7px; height: 7px; }
-
 .hero-content {
   position: relative;
   z-index: 1;
@@ -976,13 +948,6 @@ a:hover .icon-instagram {
 /* ---------- Keyframes ---------- */
 @keyframes heroIn {
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes emberRise {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 0.7; }
-  100% { transform: translateY(-92vh) translateX(18px); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
