@@ -68,7 +68,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   update();
 })();
 
-/* ---------- Hero: scroll-driven video scrub ---------- */
+/* ---------- Hero: scroll-driven content over a looping video ---------- */
 (function () {
   const heroScroll = document.querySelector("[data-hero-scroll]");
   const video = document.getElementById("heroVideo");
@@ -78,34 +78,20 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   const heroCue = document.querySelector("[data-hero-cue]");
   if (!heroScroll || !video) return;
 
+  // The video always just plays on a simple loop — this is reliable across
+  // every browser. Seeking currentTime to match scroll position turned out
+  // to be unreliable in some real-world browsers/extensions, so the scroll
+  // instead drives the content choreography layered on top of the video.
+  video.loop = true;
+  video.autoplay = true;
+  video.play().catch(() => {});
+
   const isCompact = window.matchMedia("(max-width: 860px)").matches;
   const scrubMode = !prefersReducedMotion && !isCompact && "IntersectionObserver" in window;
-
-  if (scrubMode) {
-    video.loop = false;
-    video.autoplay = false;
-
-    // Force the browser to decode and paint a real frame right away instead
-    // of leaving the static poster image showing until the user scrolls.
-    const primeFrame = () => {
-      const p = video.play();
-      if (p && p.then) p.then(() => video.pause()).catch(() => {});
-    };
-    if (video.readyState >= 2) {
-      primeFrame();
-    } else {
-      video.addEventListener("loadeddata", primeFrame, { once: true });
-    }
-  } else {
-    video.loop = true;
-    video.autoplay = true;
-    video.play().catch(() => {});
-    return; // fallback mode: normal loop, no scrub/pin loop needed
-  }
+  if (!scrubMode) return; // fallback: plain looping video, no pin/choreography loop
 
   let active = false;
   let rafId = null;
-  let lerpTime = 0;
 
   function frame() {
     if (!active) {
@@ -117,18 +103,6 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     const total = Math.max(heroScroll.offsetHeight - window.innerHeight, 1);
     const scrolled = Math.min(Math.max(-rect.top, 0), total);
     const progress = scrolled / total;
-
-    if (video.readyState >= 1 && video.duration) {
-      const targetTime = progress * video.duration;
-      lerpTime += (targetTime - lerpTime) * 0.15;
-      if (Math.abs(video.currentTime - lerpTime) > 0.03) {
-        try {
-          video.currentTime = lerpTime;
-        } catch (e) {
-          /* ignore seek errors while metadata is still loading */
-        }
-      }
-    }
 
     const fade = Math.min(1, progress / 0.35);
     if (heroContent) {
