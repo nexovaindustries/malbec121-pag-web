@@ -7,16 +7,16 @@
   <meta name="description" content="Malbec 121, parrilla y vinos en Arequipa (Yanahuara) y Lima (La Molina). Cortes nacionales e importados a la brasa, carta de vinos y cócteles de autor.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="logo-badge.jpg">
-  <link rel="stylesheet" href="styles.css?v=37">
+  <link rel="stylesheet" href="styles.css?v=38">
 </head>
 <body>
 
   <header class="site-header">
     <nav class="nav container">
       <a href="#inicio" class="logo">
-        <img src="logo-wordmark.png?v=37" alt="Malbec 121" class="logo-wordmark">
+        <img src="logo-wordmark.png?v=38" alt="Malbec 121" class="logo-wordmark">
       </a>
       <div class="nav-right">
         <ul class="nav-links" id="navLinks">
@@ -37,33 +37,46 @@
 
   <main>
 
-    <section id="inicio" class="hero hero-parallax">
-      <div class="hero-bg-video">
-        <video id="heroVideo" autoplay muted loop playsinline poster="4.jpeg">
-          <source src="video1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content container">
-        <p class="eyebrow">Parrilla &amp; Vinos · Arequipa &amp; Lima</p>
-        <h1><img src="logo-wordmark.png?v=37" alt="Malbec 121" class="hero-logo"></h1>
-        <p class="hero-sub">Cortes a la parrilla de carbón, carta de vinos seleccionada y coctelería de autor, con sedes en Arequipa y Lima.</p>
-        <div class="hero-actions">
-          <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
-          <a href="#menu" class="btn btn-outline">Ver menú</a>
+    <section id="inicio" class="hero-scroll" data-hero-scroll>
+      <div class="hero-pin">
+        <div class="hero-bg-video">
+          <video id="heroVideo" muted playsinline preload="auto" poster="4.jpeg">
+            <source src="video1.mp4" media="(max-width: 860px), (prefers-reduced-motion: reduce)" type="video/mp4">
+            <source src="video1-scrub.mp4" type="video/mp4">
+          </video>
         </div>
-        <div class="hero-rating">
-          <span>★★★★★</span>
-          <p>4.7/5 en reseñas de clientes · Top restaurantes de Arequipa</p>
+        <div class="hero-overlay" data-hero-overlay></div>
+
+        <div class="hero-content container" data-hero-content>
+          <p class="eyebrow">Parrilla &amp; Vinos · Arequipa &amp; Lima</p>
+          <h1><img src="logo-wordmark.png?v=38" alt="Malbec 121" class="hero-logo"></h1>
+          <p class="hero-sub">Cortes a la parrilla de carbón, carta de vinos seleccionada y coctelería de autor, con sedes en Arequipa y Lima.</p>
+          <div class="hero-actions">
+            <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
+            <a href="#menu" class="btn btn-outline">Ver menú</a>
+          </div>
+          <div class="hero-rating">
+            <span>★★★★★</span>
+            <p>4.7/5 en reseñas de clientes · Top restaurantes de Arequipa</p>
+          </div>
         </div>
+
+        <p class="hero-transition" data-hero-transition>Carnes que cuentan historias.</p>
+        <span class="hero-scroll-cue" data-hero-cue aria-hidden="true"><i></i>Scroll</span>
       </div>
     </section>
 
     <section id="nosotros" class="about">
-      <div class="container about-grid">
+      <div class="about-head container">
+        <p class="eyebrow">Nuestra esencia</p>
+        <h2 class="display-heading">Carne, fuego<br>y vino</h2>
+      </div>
+      <div class="about-body">
+        <div class="about-image" data-animate="fade-left">
+          <span class="about-numeral" aria-hidden="true">121</span>
+          <img src="15.jpeg" alt="Mural de Malbec 121: pasión, carne y vino" class="about-image-img">
+        </div>
         <div class="about-text" data-animate="fade-right">
-          <p class="eyebrow">Nuestra esencia</p>
-          <h2>Carne, fuego y vino</h2>
           <p>Malbec 121 nace de la tradición de la parrilla argentina y el respeto por el buen vino. Cada corte se cocina a la brasa de carbón, tal como manda la técnica, y se acompaña de una carta pensada para realzar cada bocado — con el Malbec, la uva insignia argentina, como protagonista.</p>
           <p>Con sedes en Yanahuara (Arequipa) y La Molina (Lima), en un ambiente elegante y acogedor ideal para grupos y celebraciones, nuestro equipo te guía entre cortes nacionales e importados, sabores peruanos y una selección de vinos y cócteles de autor.</p>
           <ul class="about-highlights">
@@ -73,120 +86,121 @@
             <li>Espacio para grupos y eventos</li>
           </ul>
         </div>
-        <div class="about-image" data-animate="fade-left">
-          <img src="15.jpeg" alt="Mural de Malbec 121: pasión, carne y vino" class="about-image-img">
-        </div>
       </div>
     </section>
 
     <section id="menu" class="menu-teaser">
-      <div class="container">
-        <p class="eyebrow center">Nuestra propuesta</p>
-        <h2 class="center">Carnes que cuentan historias<br>y vinos que elevan la pasión</h2>
-        <p class="section-sub center">Cortes nacionales e importados, parrillas para compartir, cócteles de autor y una carta de vinos curada de Perú, Argentina, Chile y España.</p>
-        <a href="carta.html" class="btn btn-primary">Revisa nuestra carta</a>
+      <div class="container menu-teaser-grid">
+        <p class="eyebrow">Nuestra propuesta</p>
+        <h2 class="menu-teaser-quote">Carnes que cuentan historias<br>y vinos que elevan la pasión</h2>
+        <div class="menu-teaser-side">
+          <p class="section-sub">Cortes nacionales e importados, parrillas para compartir, cócteles de autor y una carta de vinos curada de Perú, Argentina, Chile y España.</p>
+          <a href="carta.html" class="btn btn-primary">Revisa nuestra carta</a>
+        </div>
       </div>
     </section>
 
     <section id="galeria" class="gallery">
-      <div class="container">
-        <p class="eyebrow center">Un vistazo</p>
-        <h2 class="center">Galería</h2>
-        <div class="gallery-grid">
-          <div class="gallery-photo" data-animate="fade-up" data-delay="0">
-            <img src="4.jpeg" alt="Parrillada mixta en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="1">
-            <img src="13.jpeg" alt="Ambiente de Malbec 121 con música en vivo" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="2">
-            <img src="2.jpeg" alt="Corte a la parrilla con sal de mar" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="0">
-            <img src="10.jpeg" alt="Cóctel de autor con rosa de hielo en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="1">
-            <img src="5.jpeg" alt="Brindis con copas de vino en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="2">
-            <img src="3.jpeg" alt="Mesa servida con carnes y vino en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="0">
-            <img src="11.jpeg" alt="Corte premium marmoleado en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="1">
-            <img src="12.jpeg" alt="Chorizos a la parrilla en Malbec 121" loading="lazy">
-          </div>
-          <div class="gallery-photo" data-animate="fade-up" data-delay="2">
-            <img src="14.jpeg" alt="Disfrutando un corte a la parrilla en Malbec 121" loading="lazy">
-          </div>
+      <div class="gallery-head container">
+        <p class="eyebrow">Un vistazo</p>
+        <h2 class="display-heading">Galería</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-photo" data-animate="fade-up" data-delay="0">
+          <img src="4.jpeg" alt="Parrillada mixta en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="1">
+          <img src="13.jpeg" alt="Ambiente de Malbec 121 con música en vivo" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="2">
+          <img src="2.jpeg" alt="Corte a la parrilla con sal de mar" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="0">
+          <img src="10.jpeg" alt="Cóctel de autor con rosa de hielo en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="1">
+          <img src="5.jpeg" alt="Brindis con copas de vino en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="2">
+          <img src="3.jpeg" alt="Mesa servida con carnes y vino en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="0">
+          <img src="11.jpeg" alt="Corte premium marmoleado en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="1">
+          <img src="12.jpeg" alt="Chorizos a la parrilla en Malbec 121" loading="lazy">
+        </div>
+        <div class="gallery-photo" data-animate="fade-up" data-delay="2">
+          <img src="14.jpeg" alt="Disfrutando un corte a la parrilla en Malbec 121" loading="lazy">
         </div>
       </div>
     </section>
 
     <section id="ubicacion" class="location">
-      <div class="container">
-        <p class="eyebrow center">Visítanos</p>
-        <h2 class="center">Nuestras sedes</h2>
-        <p class="section-sub center">Dos ciudades, la misma parrilla de carbón y la misma carta de vinos.</p>
+      <div class="location-head container">
+        <p class="eyebrow">Visítanos</p>
+        <h2 class="display-heading">Nuestras sedes</h2>
+        <p class="section-sub">Dos ciudades, la misma parrilla de carbón y la misma carta de vinos.</p>
+      </div>
 
-        <div class="locations-grid">
-          <div class="location-card" data-animate="fade-up">
-            <h3>Arequipa · Yanahuara</h3>
-            <div class="info-block">
-              <h4>Dirección</h4>
-              <p>Av. Emmel 121, Yanahuara, Arequipa, Perú</p>
-            </div>
-            <div class="info-block">
-              <h4>Horario</h4>
-              <p>Domingo a viernes: 12:00 m. – 11:00 p.m.</p>
-              <p>Sábados: 12:00 m. – 10:00 p.m.</p>
-            </div>
-            <div class="info-block">
-              <h4>Contacto</h4>
-              <p><a href="tel:+51959009485">+51 959 009 485</a></p>
-            </div>
-            <div class="info-block">
-              <h4>Síguenos</h4>
-              <p><a href="https://www.instagram.com/malbec121/" target="_blank" rel="noopener" aria-label="Instagram Malbec 121 Arequipa"><span class="icon-instagram"></span></a></p>
-            </div>
-            <a class="location-map" href="https://www.google.com/maps/search/?api=1&query=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru" target="_blank" rel="noopener" aria-label="Abrir ubicación de Arequipa en Google Maps">
-              <iframe
-                title="Mapa Malbec 121 Arequipa"
-                src="https://www.google.com/maps?q=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </a>
+      <div class="location-row" data-animate="fade-up">
+        <div class="location-info">
+          <h3>Arequipa <span class="location-sub">· Yanahuara</span></h3>
+          <div class="info-block">
+            <h4>Dirección</h4>
+            <p>Av. Emmel 121, Yanahuara, Arequipa, Perú</p>
           </div>
+          <div class="info-block">
+            <h4>Horario</h4>
+            <p>Domingo a viernes: 12:00 m. – 11:00 p.m.</p>
+            <p>Sábados: 12:00 m. – 10:00 p.m.</p>
+          </div>
+          <div class="info-block">
+            <h4>Contacto</h4>
+            <p><a href="tel:+51959009485">+51 959 009 485</a></p>
+          </div>
+          <div class="info-block">
+            <h4>Síguenos</h4>
+            <p><a href="https://www.instagram.com/malbec121/" target="_blank" rel="noopener" aria-label="Instagram Malbec 121 Arequipa"><span class="icon-instagram"></span></a></p>
+          </div>
+        </div>
+        <a class="location-map" href="https://www.google.com/maps/search/?api=1&query=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru" target="_blank" rel="noopener" aria-label="Abrir ubicación de Arequipa en Google Maps">
+          <iframe
+            title="Mapa Malbec 121 Arequipa"
+            src="https://www.google.com/maps?q=Av.+Emmel+121,+Yanahuara,+Arequipa,+Peru&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </a>
+      </div>
 
-          <div class="location-card" data-animate="fade-up" data-delay="1">
-            <h3>Lima · La Molina</h3>
-            <div class="info-block">
-              <h4>Dirección</h4>
-              <p>Av. Flora Tristán 535, La Molina, Lima, Perú</p>
-            </div>
-            <div class="info-block">
-              <h4>Horario</h4>
-              <p>Lunes a sábado: 12:00 m. – 11:00 p.m.</p>
-              <p>Domingo: 12:00 m. – 7:00 p.m.</p>
-            </div>
-            <div class="info-block">
-              <h4>Contacto</h4>
-              <p><a href="tel:+51967960018">+51 967 960 018</a></p>
-            </div>
-            <div class="info-block">
-              <h4>Síguenos</h4>
-              <p><a href="https://www.instagram.com/malbeclima121/" target="_blank" rel="noopener" aria-label="Instagram Malbec 121 Lima"><span class="icon-instagram"></span></a></p>
-            </div>
-            <a class="location-map" href="https://www.google.com/maps/search/?api=1&query=Av.+Flora+Tristan+535,+La+Molina,+Lima,+Peru" target="_blank" rel="noopener" aria-label="Abrir ubicación de Lima en Google Maps">
-              <iframe
-                title="Mapa Malbec 121 Lima"
-                src="https://www.google.com/maps?q=Av.+Flora+Tristan+535,+La+Molina,+Lima,+Peru&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </a>
+      <div class="location-row location-row-reverse" data-animate="fade-up" data-delay="1">
+        <a class="location-map" href="https://www.google.com/maps/search/?api=1&query=Av.+Flora+Tristan+535,+La+Molina,+Lima,+Peru" target="_blank" rel="noopener" aria-label="Abrir ubicación de Lima en Google Maps">
+          <iframe
+            title="Mapa Malbec 121 Lima"
+            src="https://www.google.com/maps?q=Av.+Flora+Tristan+535,+La+Molina,+Lima,+Peru&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </a>
+        <div class="location-info">
+          <h3>Lima <span class="location-sub">· La Molina</span></h3>
+          <div class="info-block">
+            <h4>Dirección</h4>
+            <p>Av. Flora Tristán 535, La Molina, Lima, Perú</p>
+          </div>
+          <div class="info-block">
+            <h4>Horario</h4>
+            <p>Lunes a sábado: 12:00 m. – 11:00 p.m.</p>
+            <p>Domingo: 12:00 m. – 7:00 p.m.</p>
+          </div>
+          <div class="info-block">
+            <h4>Contacto</h4>
+            <p><a href="tel:+51967960018">+51 967 960 018</a></p>
+          </div>
+          <div class="info-block">
+            <h4>Síguenos</h4>
+            <p><a href="https://www.instagram.com/malbeclima121/" target="_blank" rel="noopener" aria-label="Instagram Malbec 121 Lima"><span class="icon-instagram"></span></a></p>
           </div>
         </div>
       </div>
@@ -195,7 +209,7 @@
     <section id="reservas" class="reservas">
       <div class="container reservas-inner" data-animate="fade-up">
         <p class="eyebrow center">Reserva tu mesa</p>
-        <h2 class="center">Te esperamos en Malbec 121</h2>
+        <h2 class="display-heading center">Te esperamos en Malbec 121</h2>
         <p class="section-sub center">Elegí tu sede y escríbenos por WhatsApp, o llamá directamente — sobre todo para fines de semana y grupos grandes.</p>
         <div class="reservas-locations">
           <div class="reservas-location">
@@ -226,7 +240,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <img src="logo-wordmark.png?v=37" alt="Malbec 121" class="logo-wordmark footer-logo">
+      <img src="logo-wordmark.png?v=38" alt="Malbec 121" class="logo-wordmark footer-logo">
       <div class="footer-locations">
         <p><strong>Arequipa:</strong> Av. Emmel 121, Yanahuara</p>
         <p><strong>Lima:</strong> Av. Flora Tristán 535, La Molina</p>
@@ -239,6 +253,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=37"></script>
+  <script src="script.js?v=38"></script>
 </body>
 </html>
