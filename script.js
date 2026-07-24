@@ -84,7 +84,18 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   if (scrubMode) {
     video.loop = false;
     video.autoplay = false;
-    video.pause();
+
+    // Force the browser to decode and paint a real frame right away instead
+    // of leaving the static poster image showing until the user scrolls.
+    const primeFrame = () => {
+      const p = video.play();
+      if (p && p.then) p.then(() => video.pause()).catch(() => {});
+    };
+    if (video.readyState >= 2) {
+      primeFrame();
+    } else {
+      video.addEventListener("loadeddata", primeFrame, { once: true });
+    }
   } else {
     video.loop = true;
     video.autoplay = true;
