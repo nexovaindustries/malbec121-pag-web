@@ -285,18 +285,15 @@ section {
   background: var(--text);
 }
 
-/* ---------- Hero (scroll-driven) ---------- */
+/* ---------- Hero ---------- */
 .hero-scroll {
   position: relative;
-  height: 320vh;
+  height: 100vh;
   padding: 0;
 }
 
 .hero-pin {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   height: 100vh;
   min-height: 100vh;
   display: flex;
@@ -984,14 +981,6 @@ a:hover .icon-instagram {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px), (prefers-reduced-motion: reduce) {
-  .hero-scroll {
-    height: 100vh;
-  }
-
-  .hero-pin {
-    position: relative;
-  }
-
   .hero-transition,
   .hero-scroll-cue {
     display: none;

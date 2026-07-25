@@ -99,29 +99,26 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       return;
     }
 
+    // The hero is a single normal 100vh section (no pin) — progress simply
+    // tracks how far it has scrolled past the top of the viewport, so all
+    // the choreography below plays out over one screen height of scroll.
     const rect = heroScroll.getBoundingClientRect();
-    const total = Math.max(heroScroll.offsetHeight - window.innerHeight, 1);
-    const scrolled = Math.min(Math.max(-rect.top, 0), total);
-    const progress = scrolled / total;
+    const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
 
-    const fade = Math.min(1, progress / 0.35);
+    const fade = Math.min(1, progress / 0.5);
     if (heroContent) {
       heroContent.style.opacity = String(1 - fade);
       heroContent.style.transform = `translateY(${fade * -36}px) scale(${1 - fade * 0.06})`;
     }
 
     if (heroTransition) {
-      const inStart = 0.32;
-      const inEnd = 0.5;
-      const outStart = 0.74;
-      const outEnd = 0.94;
+      const inStart = 0.45;
+      const inEnd = 0.7;
       let tOpacity = 0;
       if (progress >= inStart && progress < inEnd) {
         tOpacity = (progress - inStart) / (inEnd - inStart);
-      } else if (progress >= inEnd && progress < outStart) {
+      } else if (progress >= inEnd) {
         tOpacity = 1;
-      } else if (progress >= outStart && progress < outEnd) {
-        tOpacity = 1 - (progress - outStart) / (outEnd - outStart);
       }
       tOpacity = Math.max(0, Math.min(1, tOpacity));
       heroTransition.style.opacity = String(tOpacity);
@@ -129,7 +126,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     }
 
     if (heroCue) {
-      heroCue.style.opacity = String(Math.max(0, 1 - progress * 6));
+      heroCue.style.opacity = String(Math.max(0, 1 - progress * 8));
     }
 
     if (heroOverlay) {
