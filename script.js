@@ -68,7 +68,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   update();
 })();
 
-/* ---------- Hero: scroll-driven content over a looping video ---------- */
+/* ---------- Hero: scroll-driven cinematic video ---------- */
 (function () {
   const heroScroll = document.querySelector("[data-hero-scroll]");
   const video = document.getElementById("heroVideo");
@@ -79,37 +79,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   const heroCue = document.querySelector("[data-hero-cue]");
   if (!heroScroll || !video) return;
 
-  // The video always just plays on a simple loop — this is reliable across
-  // every browser. Seeking currentTime to match scroll position turned out
-  // to be unreliable in some real-world browsers/extensions, so the scroll
-  // instead drives the content choreography layered on top of the video.
-  video.loop = true;
-  video.autoplay = true;
-  video.play().catch(() => {});
-
-  const isCompact = window.matchMedia("(max-width: 860px)").matches;
-  const scrubMode = !prefersReducedMotion && !isCompact && "IntersectionObserver" in window;
-  if (!scrubMode) return; // fallback: plain looping video, no pin/choreography loop
-
-  let active = false;
-  let rafId = null;
-
-  function frame() {
-    if (!active) {
-      rafId = null;
-      return;
-    }
-
-    // The hero is a single normal 100vh section (no pin) — progress simply
-    // tracks how far it has scrolled past the top of the viewport, so all
-    // the choreography below plays out over one screen height of scroll.
-    const rect = heroScroll.getBoundingClientRect();
-    const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
-
-    if (heroBgVideo) {
-      heroBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
-    }
-
+  function applyChoreography(progress) {
     const fade = Math.min(1, progress / 0.5);
     if (heroContent) {
       heroContent.style.opacity = String(1 - fade);
@@ -137,20 +107,133 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     if (heroOverlay) {
       heroOverlay.style.opacity = String(0.7 + progress * 0.25);
     }
-
-    rafId = requestAnimationFrame(frame);
   }
 
-  const io = new IntersectionObserver(
+  const isCompact = window.matchMedia("(max-width: 860px)").matches;
+  const scrubMode = !prefersReducedMotion && !isCompact && "IntersectionObserver" in window;
+
+  if (!scrubMode) {
+    // Mobile / reduced-motion fallback: the video just loops normally and a
+    // gentle parallax + fade plays out over one screen height of scroll.
+    // This is the reliable path — no currentTime seeking involved.
+    video.loop = true;
+    video.autoplay = true;
+    video.play().catch(() => {});
+
+    if (!("IntersectionObserver" in window)) return;
+
+    let active = false;
+    let rafId = null;
+
+    function fallbackFrame() {
+      if (!active) {
+        rafId = null;
+        return;
+      }
+      const rect = heroScroll.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
+
+      if (heroBgVideo) {
+        heroBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
+      }
+      applyChoreography(progress);
+      rafId = requestAnimationFrame(fallbackFrame);
+    }
+
+    const fallbackIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          active = entry.isIntersecting;
+          if (active && rafId === null) rafId = requestAnimationFrame(fallbackFrame);
+        });
+      },
+      { threshold: 0 }
+    );
+    fallbackIo.observe(heroScroll);
+    return;
+  }
+
+  // Desktop scrub mode: the hero pins for ~300vh (see .hero-scroll/.hero-pin
+  // in CSS) and video.currentTime is driven by scroll progress, smoothed
+  // with a lerp so it never feels choppy. Autoplay stays off the whole time.
+  video.autoplay = false;
+  video.loop = false;
+  video.pause();
+
+  let duration = video.duration || 0;
+  let smoothedTime = 0;
+  let targetProgress = 0;
+  let active = false;
+  let rafId = null;
+  let primed = false;
+  let scrubBroken = false;
+
+  // If the browser blocks even a muted play() (some privacy extensions do),
+  // or metadata never arrives, seeking would leave the video frozen/broken.
+  // Degrade to the always-reliable looping video instead of a dead frame.
+  function fallBackToLoop() {
+    if (scrubBroken) return;
+    scrubBroken = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.play().catch(() => {});
+  }
+
+  function primeFrame() {
+    if (primed) return;
+    primed = true;
+    video.play().then(() => video.pause()).catch(fallBackToLoop);
+  }
+
+  const metadataTimeout = setTimeout(() => {
+    if (!primed) fallBackToLoop();
+  }, 3000);
+
+  video.addEventListener("loadedmetadata", () => {
+    clearTimeout(metadataTimeout);
+    duration = video.duration || 0;
+    primeFrame();
+  });
+
+  function scrubFrame() {
+    if (!active) {
+      rafId = null;
+      return;
+    }
+
+    const rect = heroScroll.getBoundingClientRect();
+    const scrollable = heroScroll.offsetHeight - window.innerHeight;
+    targetProgress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
+
+    if (duration > 0 && !scrubBroken) {
+      const targetTime = targetProgress * duration;
+      smoothedTime += (targetTime - smoothedTime) * 0.18;
+      if (Math.abs(smoothedTime - video.currentTime) > 0.01) {
+        try {
+          video.currentTime = smoothedTime;
+        } catch (e) {
+          /* seeking can throw before metadata is fully ready */
+        }
+      }
+    }
+
+    applyChoreography(targetProgress);
+    rafId = requestAnimationFrame(scrubFrame);
+  }
+
+  const scrubIo = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         active = entry.isIntersecting;
-        if (active && rafId === null) rafId = requestAnimationFrame(frame);
+        if (active) {
+          primeFrame();
+          if (rafId === null) rafId = requestAnimationFrame(scrubFrame);
+        }
       });
     },
     { threshold: 0 }
   );
-  io.observe(heroScroll);
+  scrubIo.observe(heroScroll);
 })();
 
 /* ---------- Gallery: subtle scroll parallax ---------- */
