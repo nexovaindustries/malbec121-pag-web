@@ -72,7 +72,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
 (function () {
   const heroScroll = document.querySelector("[data-hero-scroll]");
   const video = document.getElementById("heroVideo");
-  const heroBgVideo = document.querySelector(".hero-bg-video");
+  const siteBgVideo = document.querySelector(".site-bg-video");
   const heroContent = document.querySelector("[data-hero-content]");
   const heroOverlay = document.querySelector("[data-hero-overlay]");
   const heroTransition = document.querySelector("[data-hero-transition]");
@@ -133,8 +133,8 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       const rect = heroScroll.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
 
-      if (heroBgVideo) {
-        heroBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
+      if (siteBgVideo) {
+        siteBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
       }
       applyChoreography(progress);
       rafId = requestAnimationFrame(fallbackFrame);
@@ -195,6 +195,12 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     primeFrame();
   });
 
+  // Once scroll progress finishes (the hero has fully released), the video
+  // keeps playing as the fixed background for the rest of the page instead
+  // of freezing on the last scrubbed frame. Scrolling back up hands control
+  // back to the scrub.
+  let inLoopHandoff = false;
+
   function scrubFrame() {
     if (!active) {
       rafId = null;
@@ -205,7 +211,17 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     const scrollable = heroScroll.offsetHeight - window.innerHeight;
     targetProgress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
 
-    if (duration > 0 && !scrubBroken) {
+    if (targetProgress >= 1 && !inLoopHandoff) {
+      inLoopHandoff = true;
+      video.loop = true;
+      video.play().catch(() => {});
+    } else if (targetProgress < 1 && inLoopHandoff) {
+      inLoopHandoff = false;
+      video.loop = false;
+      video.pause();
+    }
+
+    if (duration > 0 && !scrubBroken && !inLoopHandoff) {
       const targetTime = targetProgress * duration;
       smoothedTime += (targetTime - smoothedTime) * 0.18;
       if (Math.abs(smoothedTime - video.currentTime) > 0.01) {

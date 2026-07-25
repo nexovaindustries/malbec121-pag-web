@@ -3,6 +3,9 @@
   --bg: #17100e;
   --bg-alt: #1f1512;
   --panel: #241a16;
+  --bg-veil: rgba(23, 16, 14, 0.9);
+  --bg-alt-veil: rgba(31, 21, 18, 0.9);
+  --panel-veil: rgba(36, 26, 22, 0.9);
   --wine: #7a1f2b;
   --wine-light: #9c2c3a;
   --gold: #c9a45c;
@@ -303,21 +306,17 @@ section {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background: var(--bg);
 }
 
-.hero-bg-video {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -8%;
-  height: 116%;
-  z-index: 0;
+.site-bg-video {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
   will-change: transform;
 }
 
-.hero-bg-video video {
+.site-bg-video video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -325,6 +324,17 @@ section {
   height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 860px), (prefers-reduced-motion: reduce) {
+  .site-bg-video {
+    position: absolute;
+    top: -8%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 116vh;
+  }
 }
 
 .hero-overlay {
@@ -430,7 +440,7 @@ section {
 /* ---------- About ---------- */
 .about {
   padding: 0;
-  background: var(--bg);
+  background: var(--bg-veil);
   overflow: hidden;
 }
 
@@ -530,7 +540,7 @@ section {
 
 /* ---------- Menu teaser ---------- */
 .menu-teaser {
-  background: var(--bg-alt);
+  background: var(--bg-alt-veil);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -747,6 +757,7 @@ section {
 
 .gallery-head {
   padding-bottom: 2.5rem;
+  background: var(--bg-veil);
 }
 
 .gallery-grid {
@@ -810,6 +821,7 @@ a:hover .icon-instagram {
 
 .location-head {
   padding-bottom: 1rem;
+  background: var(--bg-veil);
 }
 
 .location-row {
@@ -828,6 +840,7 @@ a:hover .icon-instagram {
   max-width: 620px;
   margin: 0 auto;
   width: 100%;
+  background: var(--bg-veil);
 }
 
 .location-row .location-info {
@@ -918,8 +931,8 @@ a:hover .icon-instagram {
 /* ---------- Reservas ---------- */
 .reservas {
   background:
-    linear-gradient(180deg, rgba(23,16,14,0.85), rgba(23,16,14,0.95)),
-    var(--panel);
+    linear-gradient(180deg, rgba(23,16,14,0.75), rgba(23,16,14,0.9)),
+    var(--panel-veil);
   text-align: center;
 }
 
@@ -953,7 +966,7 @@ a:hover .icon-instagram {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--bg-alt);
+  background: var(--bg-alt-veil);
   border-top: 1px solid var(--border);
   padding: 3rem 0;
   text-align: center;
