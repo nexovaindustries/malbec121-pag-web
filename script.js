@@ -72,6 +72,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
 (function () {
   const heroScroll = document.querySelector("[data-hero-scroll]");
   const video = document.getElementById("heroVideo");
+  const heroBgVideo = document.querySelector(".hero-bg-video");
   const heroContent = document.querySelector("[data-hero-content]");
   const heroOverlay = document.querySelector("[data-hero-overlay]");
   const heroTransition = document.querySelector("[data-hero-transition]");
@@ -104,6 +105,10 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     // the choreography below plays out over one screen height of scroll.
     const rect = heroScroll.getBoundingClientRect();
     const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
+
+    if (heroBgVideo) {
+      heroBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
+    }
 
     const fade = Math.min(1, progress / 0.5);
     if (heroContent) {
