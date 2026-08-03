@@ -75,7 +75,6 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   const siteBgVideo = document.querySelector(".site-bg-video");
   const heroContent = document.querySelector("[data-hero-content]");
   const heroOverlay = document.querySelector("[data-hero-overlay]");
-  const heroTransition = document.querySelector("[data-hero-transition]");
   const heroCue = document.querySelector("[data-hero-cue]");
   if (!heroScroll || !video) return;
 
@@ -84,20 +83,6 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     if (heroContent) {
       heroContent.style.opacity = String(1 - fade);
       heroContent.style.transform = `translateY(${fade * -36}px) scale(${1 - fade * 0.06})`;
-    }
-
-    if (heroTransition) {
-      const inStart = 0.45;
-      const inEnd = 0.7;
-      let tOpacity = 0;
-      if (progress >= inStart && progress < inEnd) {
-        tOpacity = (progress - inStart) / (inEnd - inStart);
-      } else if (progress >= inEnd) {
-        tOpacity = 1;
-      }
-      tOpacity = Math.max(0, Math.min(1, tOpacity));
-      heroTransition.style.opacity = String(tOpacity);
-      heroTransition.style.transform = `translate(-50%, ${(1 - tOpacity) * 16}px)`;
     }
 
     if (heroCue) {

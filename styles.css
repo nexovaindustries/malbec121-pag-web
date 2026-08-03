@@ -161,15 +161,16 @@ section {
   width: 3.4rem;
   height: 3.4rem;
   border-radius: 50%;
-  background: #25d366;
+  background: var(--wine);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 22px -6px rgba(0, 0, 0, 0.55);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .whatsapp-float:hover {
+  background: var(--wine-light);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6);
 }
@@ -442,21 +443,6 @@ section {
   color: var(--text-muted);
   font-size: 0.9rem;
   margin-top: 0.3rem;
-}
-
-.hero-transition {
-  position: absolute;
-  left: 50%;
-  bottom: 14%;
-  transform: translate(-50%, 0);
-  z-index: 1;
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1.3rem, 2.4vw, 2rem);
-  color: var(--text);
-  opacity: 0;
-  will-change: opacity, transform;
 }
 
 .hero-scroll-cue {
@@ -1057,7 +1043,6 @@ a:hover .icon-instagram {
     position: relative;
   }
 
-  .hero-transition,
   .hero-scroll-cue {
     display: none;
   }
