@@ -153,6 +153,32 @@ section {
   transform: scaleX(1);
 }
 
+.btn-whatsapp {
+  border-color: #3fae5b;
+  color: #6cd98a;
+  z-index: 0;
+}
+
+.btn-whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #3fae5b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.btn-whatsapp:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp:hover::before {
+  transform: scaleX(1);
+}
+
 /* ---------- Header / Nav ---------- */
 .site-header {
   position: fixed;
@@ -303,7 +329,7 @@ section {
   height: 100vh;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   isolation: isolate;
 }
@@ -352,9 +378,56 @@ section {
   z-index: 1;
   text-align: center;
   margin: 0 auto;
-  padding-top: 4rem;
+  padding-top: max(6.5rem, 9vh);
+  width: 100%;
   opacity: 1;
   will-change: transform, opacity;
+}
+
+.hero-info-box {
+  position: absolute;
+  top: 6rem;
+  left: 2.5rem;
+  z-index: 1;
+  max-width: 230px;
+  padding: 1.1rem 1.3rem;
+  background: rgba(23, 16, 14, 0.55);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  backdrop-filter: blur(3px);
+}
+
+.hero-info-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-top: 0.9rem;
+}
+
+.hero-info-label:first-child {
+  margin-top: 0;
+}
+
+.hero-info-value {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+.hero-info-value a:hover {
+  color: var(--gold);
+}
+
+.hero-info-value span {
+  color: var(--text-muted);
+  margin: 0 0.2rem;
+}
+
+@media (max-width: 1150px) {
+  .hero-info-box {
+    display: none;
+  }
 }
 
 .hero h1,
@@ -374,7 +447,7 @@ section {
   color: var(--text-muted);
   font-size: 1.25rem;
   max-width: 560px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
 }
 
 .hero-actions {
@@ -382,7 +455,7 @@ section {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-rating span {
@@ -1012,6 +1085,24 @@ a:hover .icon-instagram {
   .hero-transition,
   .hero-scroll-cue {
     display: none;
+  }
+}
+
+@media (max-height: 860px) {
+  .hero-scroll-cue {
+    display: none;
+  }
+
+  .hero-content {
+    padding-top: max(5.5rem, 5vh);
+  }
+
+  .hero-sub {
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-actions {
+    margin-bottom: 1.4rem;
   }
 }
 
