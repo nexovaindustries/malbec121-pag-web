@@ -388,18 +388,34 @@ section {
   padding-top: 1.3rem;
   max-width: 460px;
   border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
-.hero-quick-info a {
+.hero-quick-info-label {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-top: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.85;
+}
+
+.hero-quick-info-label:first-child {
+  margin-top: 0;
+}
+
+.hero-quick-info-value {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.hero-quick-info-value a {
   color: var(--text);
 }
 
-.hero-quick-info a:hover {
+.hero-quick-info-value a:hover {
   color: var(--gold);
 }
 
