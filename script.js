@@ -79,7 +79,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
   if (!heroScroll || !video) return;
 
   function applyChoreography(progress) {
-    const fade = Math.min(1, progress / 0.5);
+    const fade = Math.min(1, progress / 0.85);
     if (heroContent) {
       heroContent.style.opacity = String(1 - fade);
       heroContent.style.transform = `translateY(${fade * -36}px) scale(${1 - fade * 0.06})`;
@@ -193,8 +193,7 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     }
 
     const rect = heroScroll.getBoundingClientRect();
-    const scrollable = heroScroll.offsetHeight - window.innerHeight;
-    targetProgress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
+    targetProgress = Math.min(1, Math.max(0, -rect.top / rect.height));
 
     if (targetProgress >= 1 && !inLoopHandoff) {
       inLoopHandoff = true;
