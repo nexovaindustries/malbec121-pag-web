@@ -783,10 +783,12 @@ section {
 
 /* ---------- Gallery ---------- */
 .gallery {
+  padding-top: 0;
   padding-bottom: 0;
 }
 
 .gallery-head {
+  padding-top: 5rem;
   padding-bottom: 2.5rem;
   background: var(--bg-veil);
 }
@@ -846,11 +848,12 @@ a:hover .icon-instagram {
 
 /* ---------- Location ---------- */
 .location {
-  padding-top: 5rem;
+  padding-top: 0;
   padding-bottom: 0;
 }
 
 .location-head {
+  padding-top: 5rem;
   padding-bottom: 1rem;
   background: var(--bg-veil);
 }
