@@ -386,7 +386,7 @@ section {
 .hero-quick-info {
   margin-top: 2rem;
   padding-top: 1.3rem;
-  max-width: 460px;
+  max-width: 620px;
   border-top: 1px solid var(--border);
 }
 
@@ -1059,7 +1059,7 @@ a:hover .icon-instagram {
   }
 }
 
-@media (max-height: 1050px) {
+@media (max-height: 1150px) {
   .hero-scroll-cue {
     display: none;
   }
@@ -1084,9 +1084,13 @@ a:hover .icon-instagram {
     margin-top: 1rem;
     padding-top: 0.9rem;
   }
+
+  .hero-quick-info-label {
+    margin-top: 0.6rem;
+  }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 860px) {
   .hero-quick-info {
     display: none;
   }
