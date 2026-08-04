@@ -94,146 +94,43 @@ if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     }
   }
 
-  const isCompact = window.matchMedia("(max-width: 860px)").matches;
-  const scrubMode = !prefersReducedMotion && !isCompact && "IntersectionObserver" in window;
+  // The video always plays on a simple loop from page load, independent of
+  // scroll — the client wants it active immediately, not gated behind a
+  // scroll-driven scrub. Scroll only drives the content fade/parallax below.
+  video.loop = true;
+  video.autoplay = true;
+  video.play().catch(() => {});
 
-  if (!scrubMode) {
-    // Mobile / reduced-motion fallback: the video just loops normally and a
-    // gentle parallax + fade plays out over one screen height of scroll.
-    // This is the reliable path — no currentTime seeking involved.
-    video.loop = true;
-    video.autoplay = true;
-    video.play().catch(() => {});
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
 
-    if (!("IntersectionObserver" in window)) return;
-
-    let active = false;
-    let rafId = null;
-
-    function fallbackFrame() {
-      if (!active) {
-        rafId = null;
-        return;
-      }
-      const rect = heroScroll.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
-
-      if (siteBgVideo) {
-        siteBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
-      }
-      applyChoreography(progress);
-      rafId = requestAnimationFrame(fallbackFrame);
-    }
-
-    const fallbackIo = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          active = entry.isIntersecting;
-          if (active && rafId === null) rafId = requestAnimationFrame(fallbackFrame);
-        });
-      },
-      { threshold: 0 }
-    );
-    fallbackIo.observe(heroScroll);
-    return;
-  }
-
-  // Desktop scrub mode: the hero pins for ~300vh (see .hero-scroll/.hero-pin
-  // in CSS) and video.currentTime is driven by scroll progress, smoothed
-  // with a lerp so it never feels choppy. Autoplay stays off the whole time.
-  video.autoplay = false;
-  video.loop = false;
-  video.pause();
-
-  let duration = video.duration || 0;
-  let smoothedTime = 0;
-  let targetProgress = 0;
   let active = false;
   let rafId = null;
-  let primed = false;
-  let scrubBroken = false;
 
-  // If the browser blocks even a muted play() (some privacy extensions do),
-  // or metadata never arrives, seeking would leave the video frozen/broken.
-  // Degrade to the always-reliable looping video instead of a dead frame.
-  function fallBackToLoop() {
-    if (scrubBroken) return;
-    scrubBroken = true;
-    video.loop = true;
-    video.autoplay = true;
-    video.play().catch(() => {});
-  }
-
-  function primeFrame() {
-    if (primed) return;
-    primed = true;
-    video.play().then(() => video.pause()).catch(fallBackToLoop);
-  }
-
-  const metadataTimeout = setTimeout(() => {
-    if (!primed) fallBackToLoop();
-  }, 3000);
-
-  video.addEventListener("loadedmetadata", () => {
-    clearTimeout(metadataTimeout);
-    duration = video.duration || 0;
-    primeFrame();
-  });
-
-  // Once scroll progress finishes (the hero has fully released), the video
-  // keeps playing as the fixed background for the rest of the page instead
-  // of freezing on the last scrubbed frame. Scrolling back up hands control
-  // back to the scrub.
-  let inLoopHandoff = false;
-
-  function scrubFrame() {
+  function frame() {
     if (!active) {
       rafId = null;
       return;
     }
-
     const rect = heroScroll.getBoundingClientRect();
-    targetProgress = Math.min(1, Math.max(0, -rect.top / rect.height));
+    const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
 
-    if (targetProgress >= 1 && !inLoopHandoff) {
-      inLoopHandoff = true;
-      video.loop = true;
-      video.play().catch(() => {});
-    } else if (targetProgress < 1 && inLoopHandoff) {
-      inLoopHandoff = false;
-      video.loop = false;
-      video.pause();
+    if (siteBgVideo) {
+      siteBgVideo.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
     }
-
-    if (duration > 0 && !scrubBroken && !inLoopHandoff) {
-      const targetTime = targetProgress * duration;
-      smoothedTime += (targetTime - smoothedTime) * 0.18;
-      if (Math.abs(smoothedTime - video.currentTime) > 0.01) {
-        try {
-          video.currentTime = smoothedTime;
-        } catch (e) {
-          /* seeking can throw before metadata is fully ready */
-        }
-      }
-    }
-
-    applyChoreography(targetProgress);
-    rafId = requestAnimationFrame(scrubFrame);
+    applyChoreography(progress);
+    rafId = requestAnimationFrame(frame);
   }
 
-  const scrubIo = new IntersectionObserver(
+  const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         active = entry.isIntersecting;
-        if (active) {
-          primeFrame();
-          if (rafId === null) rafId = requestAnimationFrame(scrubFrame);
-        }
+        if (active && rafId === null) rafId = requestAnimationFrame(frame);
       });
     },
     { threshold: 0 }
   );
-  scrubIo.observe(heroScroll);
+  io.observe(heroScroll);
 })();
 
 /* ---------- Gallery: subtle scroll parallax ---------- */
