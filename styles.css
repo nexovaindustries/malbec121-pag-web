@@ -785,12 +785,12 @@ section {
 .gallery {
   padding-top: 0;
   padding-bottom: 0;
+  background: var(--bg-veil);
 }
 
 .gallery-head {
   padding-top: 5rem;
   padding-bottom: 2.5rem;
-  background: var(--bg-veil);
 }
 
 .gallery-grid {
