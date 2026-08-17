@@ -153,6 +153,33 @@ section {
   transform: scaleX(1);
 }
 
+.btn-ar {
+  display: none;
+  border-color: var(--gold);
+  color: var(--gold);
+  z-index: 0;
+}
+
+.btn-ar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.btn-ar:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.btn-ar:hover::before {
+  transform: scaleX(1);
+}
+
 .whatsapp-float {
   position: fixed;
   right: 1.75rem;
