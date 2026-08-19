@@ -1,24 +1,28 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 
-navToggle.addEventListener("click", () => {
-  const isOpen = navLinks.classList.toggle("open");
-  navToggle.setAttribute("aria-expanded", isOpen);
-});
-
-navLinks.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    navToggle.setAttribute("aria-expanded", "false");
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", isOpen);
   });
-});
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
 
 /* ---------- AR "plato estrella": iOS Quick Look / Android Scene Viewer ---------- */
 (function () {
   const iosLink = document.getElementById("arLinkIos");
   const androidLink = document.getElementById("arLinkAndroid");
+  const fallback = document.getElementById("arFallback");
   if (!iosLink || !androidLink) return;
 
   const ua = navigator.userAgent;
@@ -37,6 +41,8 @@ navLinks.querySelectorAll("a").forEach((link) => {
       ";end;";
     androidLink.href = intentUrl;
     androidLink.style.display = "inline-block";
+  } else if (fallback) {
+    fallback.style.display = "block";
   }
 })();
 
