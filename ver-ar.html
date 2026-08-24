@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="logo-badge.jpg">
-  <link rel="stylesheet" href="styles.css?v=63">
+  <link rel="stylesheet" href="styles.css?v=64">
+  <script type="module" src="https://unpkg.com/@google/model-viewer@^3.5.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -16,15 +17,47 @@
     <img src="logo-wordmark.png?v=63" alt="Malbec 121" class="ar-landing-logo">
     <p class="eyebrow center">Plato estrella</p>
     <h1 class="center">Mira nuestro corte en Realidad Aumentada</h1>
-    <p class="section-sub center">Toca el botón y colócalo sobre tu propia mesa, a tamaño real.</p>
+    <p class="section-sub center">Gira el plato con el dedo y, si tu teléfono lo permite, tócalo para colocarlo sobre tu propia mesa a tamaño real.</p>
 
-    <a href="plato-estrella-ar.usdz" rel="ar" class="btn btn-primary ar-landing-btn" id="arLinkIos" style="display:none;">Ver en Realidad Aumentada</a>
-    <a href="#" class="btn btn-primary ar-landing-btn" id="arLinkAndroid" rel="noopener" style="display:none;">Ver en Realidad Aumentada</a>
-    <p class="ar-landing-fallback" id="arFallback" style="display:none;">Abre este enlace desde un iPhone o un celular Android para verlo en AR.</p>
+    <model-viewer
+      id="platoModel"
+      class="ar-model-viewer"
+      src="plato-estrella-ar.glb"
+      ios-src="plato-estrella-ar.usdz"
+      poster="video1-poster.jpg"
+      alt="Plato estrella Malbec 121 en 3D"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-scale="fixed"
+      camera-controls
+      touch-action="pan-y"
+      shadow-intensity="1"
+      auto-rotate
+      reveal="interaction"
+      loading="lazy">
+      <button slot="poster" class="btn btn-primary ar-landing-btn" id="arRevealBtn">
+        Toca para cargar el modelo 3D
+      </button>
+      <button slot="ar-button" class="btn btn-primary ar-landing-btn" id="arActivateBtn">
+        Ver en Realidad Aumentada
+      </button>
+      <div slot="progress-bar" class="ar-model-progress"><div class="ar-model-progress-bar"></div></div>
+    </model-viewer>
+
+    <p class="ar-landing-fallback">Funciona directo desde la cámara de tu navegador: Safari en iPhone, o Chrome en Android con ARCore. No necesitas instalar ninguna app.</p>
 
     <a href="index.html" class="ar-landing-back">Volver al inicio</a>
   </main>
 
-  <script src="script.js?v=63"></script>
+  <script>
+    const platoModel = document.getElementById('platoModel');
+    platoModel.addEventListener('progress', (event) => {
+      const bar = platoModel.querySelector('.ar-model-progress-bar');
+      const wrap = platoModel.querySelector('.ar-model-progress');
+      const pct = event.detail.totalProgress * 100;
+      bar.style.width = pct + '%';
+      wrap.classList.toggle('hide', event.detail.totalProgress === 1);
+    });
+  </script>
 </body>
 </html>

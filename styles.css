@@ -154,7 +154,6 @@ section {
 }
 
 .btn-ar {
-  display: none;
   border-color: var(--gold);
   color: var(--gold);
   z-index: 0;
@@ -240,6 +239,39 @@ section {
 
 .ar-landing-btn {
   margin-top: 2rem;
+}
+
+.ar-model-viewer {
+  width: 100%;
+  max-width: 480px;
+  height: min(55vh, 480px);
+  margin-top: 1.5rem;
+  --poster-color: transparent;
+  background: radial-gradient(circle at 50% 40%, rgba(201,164,92,0.12), transparent 70%);
+  border-radius: 18px;
+}
+
+.ar-model-progress {
+  display: block;
+  width: 60%;
+  height: 4px;
+  margin: 0 auto;
+  background: rgba(243,236,230,0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.ar-model-progress.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ar-model-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  transition: width 0.3s ease;
 }
 
 .ar-landing-fallback {

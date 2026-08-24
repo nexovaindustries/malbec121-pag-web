@@ -18,34 +18,6 @@ if (navToggle && navLinks) {
   });
 }
 
-/* ---------- AR "plato estrella": iOS Quick Look / Android Scene Viewer ---------- */
-(function () {
-  const iosLink = document.getElementById("arLinkIos");
-  const androidLink = document.getElementById("arLinkAndroid");
-  const fallback = document.getElementById("arFallback");
-  if (!iosLink || !androidLink) return;
-
-  const ua = navigator.userAgent;
-  const isIOS = /iPad|iPhone|iPod/.test(ua);
-  const isAndroid = /Android/.test(ua);
-
-  if (isIOS) {
-    iosLink.style.display = "inline-block";
-  } else if (isAndroid) {
-    const glbUrl = new URL("plato-estrella-ar.glb", window.location.href).href;
-    const intentUrl =
-      "intent://arvr.google.com/scene-viewer/1.0?file=" +
-      encodeURIComponent(glbUrl) +
-      "&mode=ar_preferred#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=" +
-      encodeURIComponent(glbUrl) +
-      ";end;";
-    androidLink.href = intentUrl;
-    androidLink.style.display = "inline-block";
-  } else if (fallback) {
-    fallback.style.display = "block";
-  }
-})();
-
 const animatedEls = document.querySelectorAll("[data-animate]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
