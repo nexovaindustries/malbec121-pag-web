@@ -825,6 +825,19 @@ section {
   text-align: right;
 }
 
+.menu-items li.has-desc {
+  flex-wrap: wrap;
+}
+
+.menu-items li.has-desc .item-desc {
+  flex-basis: 100%;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
 /* ---------- Carta page ---------- */
 .carta-hero {
   padding: 8rem 0 3rem;
