@@ -97,25 +97,40 @@
     const picker = document.getElementById('arDishPicker');
     const caption = document.getElementById('arDishCaption');
     const revealBtn = document.getElementById('arRevealBtn');
+    const progressWrap = model.querySelector('.ar-model-progress');
+    const progressBar = model.querySelector('.ar-model-progress-bar');
 
     const menu = DISHES.filter(d => d.available);
     let revealedOnce = false;
-
     let current = null;
 
-    // El modelo pesa varios MB: solo se descarga cuando el usuario lo pide.
+    // El componente <model-viewer> llega en un script type=module, que se
+    // difiere: al correr esto todavia no esta definido y sus metodos no
+    // existen. Por eso todo lo que lo toque va detras de un guard.
+    function ready() {
+      return typeof model.dismissPoster === 'function';
+    }
+
     function loadCurrent() {
       if (!current) return;
       revealedOnce = true;
-      model.src = current.glb;
+      revealBtn.textContent = 'Cargando modelo 3D...';
+      progressWrap.classList.remove('hide');
+      model.setAttribute('src', current.glb);
       model.setAttribute('ios-src', current.usdz);
-      model.dismissPoster();
+      // Al cambiar de plato, model-viewer repone el poster despues de
+      // procesar el src nuevo: hay que descartarlo tambien en el frame
+      // siguiente o el modelo se queda sin cargar. dismissPoster es idempotente.
+      if (ready()) {
+        model.dismissPoster();
+        requestAnimationFrame(() => model.dismissPoster());
+      }
     }
 
-    function selectDish(dish, { autoLoad }) {
+    function selectDish(dish, autoLoad) {
       current = dish;
-      model.poster = dish.poster;
-      model.alt = dish.name + ' de Malbec 121 en 3D';
+      model.setAttribute('poster', dish.poster);
+      model.setAttribute('alt', dish.name + ' de Malbec 121 en 3D');
       caption.textContent = dish.note || '';
 
       picker.querySelectorAll('.ar-dish-chip').forEach(chip => {
@@ -124,20 +139,44 @@
         chip.setAttribute('aria-selected', on ? 'true' : 'false');
       });
 
-      const url = new URL(window.location);
-      url.searchParams.set('plato', dish.slug);
-      history.replaceState(null, '', url);
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('plato', dish.slug);
+        history.replaceState(null, '', url);
+      } catch (e) { /* file:// u otros contextos sin history */ }
 
       if (autoLoad) {
         loadCurrent();
       } else {
+        revealBtn.textContent = 'Toca para cargar el modelo 3D';
+        progressBar.style.width = '0%';
+        progressWrap.classList.add('hide');
         model.removeAttribute('src');
         model.removeAttribute('ios-src');
-        model.showPoster();
+        if (ready()) model.showPoster();
       }
     }
 
-    // Solo dibujamos el selector si hay mas de un plato disponible.
+    // Los listeners se registran primero: si algo falla mas abajo, el
+    // boton sigue respondiendo.
+    revealBtn.addEventListener('click', loadCurrent);
+
+    model.addEventListener('progress', (event) => {
+      const pct = event.detail.totalProgress * 100;
+      progressBar.style.width = pct + '%';
+      progressWrap.classList.toggle('hide', event.detail.totalProgress === 1);
+    });
+
+    model.addEventListener('load', () => {
+      progressWrap.classList.add('hide');
+    });
+
+    model.addEventListener('error', () => {
+      revealBtn.textContent = 'No se pudo cargar. Toca para reintentar';
+      progressWrap.classList.add('hide');
+      if (ready()) model.showPoster();
+    });
+
     if (menu.length > 1) {
       menu.forEach(dish => {
         const chip = document.createElement('button');
@@ -146,7 +185,7 @@
         chip.dataset.slug = dish.slug;
         chip.textContent = dish.name;
         chip.setAttribute('role', 'tab');
-        chip.addEventListener('click', () => selectDish(dish, { autoLoad: revealedOnce }));
+        chip.addEventListener('click', () => selectDish(dish, revealedOnce));
         picker.appendChild(chip);
       });
     } else {
@@ -156,18 +195,11 @@
     const wanted = new URLSearchParams(window.location.search).get('plato');
     const initial = menu.find(d => d.slug === wanted) || menu[0];
     if (initial) {
-      selectDish(initial, { autoLoad: false });
+      selectDish(initial, false);
+      customElements.whenDefined('model-viewer').then(() => {
+        if (!revealedOnce) model.showPoster();
+      });
     }
-
-    revealBtn.addEventListener('click', loadCurrent);
-
-    model.addEventListener('progress', (event) => {
-      const bar = model.querySelector('.ar-model-progress-bar');
-      const wrap = model.querySelector('.ar-model-progress');
-      const pct = event.detail.totalProgress * 100;
-      bar.style.width = pct + '%';
-      wrap.classList.toggle('hide', event.detail.totalProgress === 1);
-    });
   </script>
 </body>
 </html>
