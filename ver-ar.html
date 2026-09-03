@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plato estrella en AR | Malbec 121</title>
-  <meta name="description" content="Mira nuestro plato estrella en Realidad Aumentada, directo sobre tu mesa.">
+  <title>Nuestros platos en RA | Malbec 121</title>
+  <meta name="description" content="Mira nuestros platos en Realidad Aumentada, directo sobre tu mesa.">
   <meta name="robots" content="noindex">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="logo-badge.jpg">
-  <link rel="stylesheet" href="styles.css?v=64">
+  <link rel="stylesheet" href="styles.css?v=66">
   <script type="module" src="https://unpkg.com/@google/model-viewer@^3.5.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
   <main class="ar-landing">
-    <img src="logo-wordmark.png?v=63" alt="Malbec 121" class="ar-landing-logo">
-    <p class="eyebrow center">Plato estrella</p>
-    <h1 class="center">Mira nuestro corte en Realidad Aumentada</h1>
-    <p class="section-sub center">Gira el plato con el dedo y, si tu teléfono lo permite, tócalo para colocarlo sobre tu propia mesa a tamaño real.</p>
+    <img src="logo-wordmark.png?v=66" alt="Malbec 121" class="ar-landing-logo">
+    <p class="eyebrow center">Nuestros platos</p>
+    <h1 class="center">Míralos en Realidad Aumentada</h1>
+    <p class="section-sub center">Elige un plato, gíralo con el dedo y, si tu teléfono lo permite, tócalo para colocarlo sobre tu propia mesa a tamaño real.</p>
+
+    <div class="ar-dish-picker" id="arDishPicker" role="tablist" aria-label="Elige un plato"></div>
 
     <model-viewer
       id="platoModel"
       class="ar-model-viewer"
-      src="plato-estrella-ar.glb"
-      ios-src="plato-estrella-ar.usdz"
       poster="video1-poster.jpg"
-      alt="Plato estrella Malbec 121 en 3D"
+      alt="Plato de Malbec 121 en 3D"
       ar
       ar-modes="webxr scene-viewer quick-look"
       ar-scale="fixed"
@@ -33,7 +33,7 @@
       touch-action="pan-y"
       shadow-intensity="1"
       auto-rotate
-      reveal="interaction"
+      reveal="manual"
       loading="lazy">
       <button slot="poster" class="btn btn-primary ar-landing-btn" id="arRevealBtn">
         Toca para cargar el modelo 3D
@@ -44,16 +44,126 @@
       <div slot="progress-bar" class="ar-model-progress"><div class="ar-model-progress-bar"></div></div>
     </model-viewer>
 
+    <p class="ar-dish-caption" id="arDishCaption"></p>
+
     <p class="ar-landing-fallback">Funciona directo desde la cámara de tu navegador: Safari en iPhone, o Chrome en Android con ARCore. No necesitas instalar ninguna app.</p>
 
     <a href="index.html" class="ar-landing-back">Volver al inicio</a>
   </main>
 
   <script>
-    const platoModel = document.getElementById('platoModel');
-    platoModel.addEventListener('progress', (event) => {
-      const bar = platoModel.querySelector('.ar-model-progress-bar');
-      const wrap = platoModel.querySelector('.ar-model-progress');
+    // Cada plato con modelo listo. Para sumar uno: deja los archivos .glb y .usdz
+    // en la raiz y agrega su entrada aqui con available: true.
+    const DISHES = [
+      {
+        slug: 'parrilla-doble',
+        name: 'Parrilla Malbec doble',
+        note: 'Para compartir entre dos. Asado de tira, cuadril, bondiola, pollo, chorizo y morcilla.',
+        glb: 'plato-estrella-ar.glb',
+        usdz: 'plato-estrella-ar.usdz',
+        poster: 'video1-poster.jpg',
+        available: true
+      },
+      {
+        slug: 'parrilla-simple',
+        name: 'Parrilla Malbec simple',
+        note: 'Bife de res, cuadril, bondiola, pollo, chorizo y corazon.',
+        glb: 'ar-parrilla-simple.glb',
+        usdz: 'ar-parrilla-simple.usdz',
+        poster: 'video1-poster.jpg',
+        available: false
+      },
+      {
+        slug: 'tomahawk',
+        name: 'Tomahawk de res',
+        note: '1 kilo de corte con hueso, a la brasa, con papas fritas.',
+        glb: 'ar-tomahawk.glb',
+        usdz: 'ar-tomahawk.usdz',
+        poster: 'cortes.png',
+        available: false
+      },
+      {
+        slug: 'lomo-saltado',
+        name: 'Lomo saltado',
+        note: 'Al estilo Malbec: flambeado con cebolla, tomate y aji amarillo.',
+        glb: 'ar-lomo-saltado.glb',
+        usdz: 'ar-lomo-saltado.usdz',
+        poster: 'video1-poster.jpg',
+        available: false
+      }
+    ];
+
+    const model = document.getElementById('platoModel');
+    const picker = document.getElementById('arDishPicker');
+    const caption = document.getElementById('arDishCaption');
+    const revealBtn = document.getElementById('arRevealBtn');
+
+    const menu = DISHES.filter(d => d.available);
+    let revealedOnce = false;
+
+    let current = null;
+
+    // El modelo pesa varios MB: solo se descarga cuando el usuario lo pide.
+    function loadCurrent() {
+      if (!current) return;
+      revealedOnce = true;
+      model.src = current.glb;
+      model.setAttribute('ios-src', current.usdz);
+      model.dismissPoster();
+    }
+
+    function selectDish(dish, { autoLoad }) {
+      current = dish;
+      model.poster = dish.poster;
+      model.alt = dish.name + ' de Malbec 121 en 3D';
+      caption.textContent = dish.note || '';
+
+      picker.querySelectorAll('.ar-dish-chip').forEach(chip => {
+        const on = chip.dataset.slug === dish.slug;
+        chip.classList.toggle('is-active', on);
+        chip.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+
+      const url = new URL(window.location);
+      url.searchParams.set('plato', dish.slug);
+      history.replaceState(null, '', url);
+
+      if (autoLoad) {
+        loadCurrent();
+      } else {
+        model.removeAttribute('src');
+        model.removeAttribute('ios-src');
+        model.showPoster();
+      }
+    }
+
+    // Solo dibujamos el selector si hay mas de un plato disponible.
+    if (menu.length > 1) {
+      menu.forEach(dish => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'ar-dish-chip';
+        chip.dataset.slug = dish.slug;
+        chip.textContent = dish.name;
+        chip.setAttribute('role', 'tab');
+        chip.addEventListener('click', () => selectDish(dish, { autoLoad: revealedOnce }));
+        picker.appendChild(chip);
+      });
+    } else {
+      picker.remove();
+    }
+
+    const wanted = new URLSearchParams(window.location.search).get('plato');
+    const initial = menu.find(d => d.slug === wanted) || menu[0];
+    if (initial) {
+      selectDish(initial, { autoLoad: false });
+    }
+
+    revealBtn.addEventListener('click', loadCurrent);
+
+    model.addEventListener('progress', (event) => {
+      const bar = model.querySelector('.ar-model-progress-bar');
+      const wrap = model.querySelector('.ar-model-progress');
       const pct = event.detail.totalProgress * 100;
       bar.style.width = pct + '%';
       wrap.classList.toggle('hide', event.detail.totalProgress === 1);
